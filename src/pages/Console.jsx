@@ -1,6 +1,6 @@
 import { motion } from "motion/react"
 import Sidebar from "../components/Console/sidebar"
-import ConsoleBody from "../components/Console/body"
+import ConsoleBody from "../components/Console/Consolebody"
 import { useEffect, useEffectEvent, useState } from "react"
 const Console = () => {
   const [theme,settheme] = useState("dark");
