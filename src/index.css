@@ -24,8 +24,8 @@
   --highlight: hsl(220 100% 100%);
 }
 .dark{
-   --bg-light: hsl(220 0% 10%);
-  --bg: hsl(220 0% 5%);
+   --bg-light: hsl(220 0% 20%);
+  --bg: hsl(220 0% 10%);
   --bg-dark: hsl(0, 0%, 0%);
   --text: hsl(226 85% 93%);
   --text-muted: hsl(220 26% 69%); 

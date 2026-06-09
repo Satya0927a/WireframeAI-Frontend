@@ -9,7 +9,7 @@ const Preview = ({ EditPrompt, EditorValue }) => {
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-between px-10 py-5">
-      <div className="w-full bg-amber-500 flex-1 min-h-0 rounded-2xl my-10 overflow-hidden">
+      <div className="w-full bg-amber-500 h-fit rounded-2xl my-10 overflow-hidden">
         <SandpackProvider
           options={{
             recompileMode: "delayed",
@@ -28,7 +28,7 @@ const Preview = ({ EditPrompt, EditorValue }) => {
             }
           }}
           style={{
-            "--sp-layout-height": "700px",
+            "--sp-layout-height": "650px",
           }}
         >
           <SandpackLayout className="h-full"
