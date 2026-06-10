@@ -30,8 +30,8 @@ const ConsoleBody = ({theme})=>{
     <div className="flex items-center text-(--text)">
       <div className="bg-(--bg-dark) flex flex-col items-center min-w-0 h-screen" style={{width:`${leftwidth}%`}}>
         <div className="flex bg-(--bg) mt-5  h-10 w-50 justify-evenly rounded-full py-1 px-1 relative">
-          <button onClick={()=>{setleftwinndowMode(0)}} className={` z-[1] ${leftwindowMode == 0?"text-(--text)":"text-(--text-muted)"}`}>Preview</button>
-          <button onClick={()=>{setleftwinndowMode(1)}} className={`z-[1] ${leftwindowMode == 1?"text-(--text)":"text-(--text-muted)"}`}>Wireframe</button>
+          <button onClick={()=>{setleftwinndowMode(0)}} className={` z-[1] hover:cursor-pointer ${leftwindowMode == 0?"text-(--text)":"text-(--text-muted)"}`}>Preview</button>
+          <button onClick={()=>{setleftwinndowMode(1)}} className={`z-[1] hover:cursor-pointer ${leftwindowMode == 1?"text-(--text)":"text-(--text-muted)"}`}>Wireframe</button>
           <motion.div  animate={leftwindowMode == 0?{left:4}:{left:85, width:"55%"}} className="absolute bg-(--bg-light) top-1  h-[80%] w-[45%] rounded-full"></motion.div>
         </div>
         {leftwindowMode == 0?<Preview EditPrompt={EditPrompt} EditorValue={EditorValue}/>:<Wireframe WireframePrompt={WireframePrompt}/>}
