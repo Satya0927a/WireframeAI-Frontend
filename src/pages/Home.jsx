@@ -12,7 +12,7 @@ import FAQ from "../components/FAQ";
 
 function Home() {
   return (
-    <>
+    <div className="background">
       <Navbar /> 
 
     <div className="">
@@ -132,7 +132,7 @@ function Home() {
       </div>
   
     </div>
-          </>
+          </div>
   )
 }
 const Card = ({ topvariant, image, title, desc }) => {

@@ -1,7 +1,32 @@
 @import "tailwindcss";
-
-body {
+@custom-variant dark (&:where(.dark, .dark *));
+.background {
   background-image: url('./assets/image.png');
-background-position: center;
-background-size: cover;
+  background-position: center;
+  background-size: cover;
+}
+
+:root {
+ --border: hsl(220 19% 53%);
+  --border-light: hsl(0 0 100%);
+  --highlight: hsl(0, 0%, 100%);
+  --shadow-btn: 0px 4px 4px #00000030, 0px 12px 12px #00000015;
+  --shadow-card-info: 0px 1px 1px #00000030, 0px 3px 3px #00000015;
+}
+
+.light {
+
+  --bg-dark: hsl(220 59% 90%);
+  --bg: hsl(220 100% 95%);
+  --bg-light: hsl(220 100% 100%);
+  --text: hsl(226 85% 7%);
+  --text-muted: hsl(220 26% 31%);
+  --highlight: hsl(220 100% 100%);
+}
+.dark{
+   --bg-light: hsl(220 0% 20%);
+  --bg: hsl(220 0% 10%);
+  --bg-dark: hsl(0, 0%, 0%);
+  --text: hsl(226 85% 93%);
+  --text-muted: hsl(220 26% 69%); 
 }

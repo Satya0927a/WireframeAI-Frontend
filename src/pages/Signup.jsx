@@ -9,7 +9,7 @@ function Signup() {
 
   return (
     
-    <div className="mt-35 flex items-center justify-center px-6">
+    <div className="mt-35 flex items-center justify-center px-6 background">
        <button
         onClick={() => navigate("/")}
         className="absolute top-18 left-6"

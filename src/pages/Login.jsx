@@ -7,7 +7,7 @@ function Login() {
   const navigate = useNavigate();
 
   return (
-    <div className=" px-6 pt-8">
+    <div className=" px-6 pt-8 background">
       {/* Back Button */}
       <button
         onClick={() => navigate("/")}

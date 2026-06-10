@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Termofuse from "./pages/Termofuse";
 import Privacy from "./pages/Privacy"
+import Console from './pages/Console';
 
 function App() {
 
@@ -32,6 +33,9 @@ function App() {
 
       {/* Privacy */}
       <Route path="/Priavcy" element={<Privacy />} />
+
+      {/* Console  */}
+      <Route path="/console" element={<Console />} />
 
     </Routes>
     </BrowserRouter>
