@@ -7,16 +7,16 @@
 }
 
 :root {
- --border: hsl(220 19% 53%);
+ --border: hsl(220 19% 33%);
   --border-light: hsl(0 0 100%);
-  --highlight: hsl(0, 0%, 100%);
+  --highlight: hsl(0, 0%, 77%);
   --shadow-btn: 0px 4px 4px #00000030, 0px 12px 12px #00000015;
   --shadow-card-info: 0px 1px 1px #00000030, 0px 3px 3px #00000015;
 }
 
 .light {
 
-  --bg-dark: hsl(220 59% 90%);
+  --bg-dark: hsl(220 59% 85%);
   --bg: hsl(220 100% 95%);
   --bg-light: hsl(220 100% 100%);
   --text: hsl(226 85% 7%);

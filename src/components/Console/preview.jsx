@@ -24,7 +24,8 @@ const Preview = ({ EditPrompt, EditorValue }) => {
           }}
           customSetup={{
             dependencies: {
-              "motion": "latest"
+              "motion": "latest",
+              "lucide-react":"latest"
             }
           }}
           style={{
