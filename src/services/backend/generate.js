@@ -1,7 +1,8 @@
+import axios from "axios";
 async function Generate(imageData, UserPrompt,setEditorValue) {
   const formData = new FormData();
   formData.append("image", imageData)
-  formData.append("UserPrompt", UserPrompt)
+  formData.append("userPrompt", UserPrompt)
   const response = await fetch(
     "http://localhost:3000/generate",
     {
@@ -21,4 +22,12 @@ async function Generate(imageData, UserPrompt,setEditorValue) {
   }
 }
 
-export {Generate}
+async function Edit(code,editPrompt) {
+  const response = await axios.post("http://localhost:3000/generate/edit",{
+    editPrompt:editPrompt,
+    code:code
+  })
+  return response.data
+}
+
+export {Generate, Edit}

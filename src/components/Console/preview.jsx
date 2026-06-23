@@ -1,10 +1,11 @@
 import { Sandpack, SandpackProvider, SandpackPreview, SandpackLayout } from "@codesandbox/sandpack-react";
+import axios from "axios";
 import { Send } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { Edit } from "../../services/backend/generate";
 
-const Preview = ({ EditPrompt, EditorValue,isHidden ,iframe}) => {
-  const [editDetails, setEditDetails] = useState(EditPrompt.current)
+const Preview = ({ EditPrompt, setEditorValue,EditorValue,isHidden ,iframe}) => {
 
   return (
     <div className={`w-full h-full ${isHidden?"hidden":"flex"} flex-col items-center justify-between px-10 py-5`}>
@@ -37,19 +38,86 @@ const Preview = ({ EditPrompt, EditorValue,isHidden ,iframe}) => {
           </SandpackLayout>
         </SandpackProvider>
       </div>
-      <div className="bg-(--bg) dark:border-t-1 dark:outline outline-(--border) dark:border-(--highlight) shadow-(--shadow-btn)  w-full max-w-200 rounded-2xl flex flex-col gap-5 p-5">
-        <div className="flex items-end gap-5" >
-          <textarea name="" className="text-(--text-muted) resize-none outline-none w-full " value={editDetails}
-            onChange={(e) => {
-              setEditDetails(e.target.value);
-              EditPrompt.current = e.target.value;
-              e.target.style.height = "auto";
-              e.target.style.height = `${Math.min(e.target.scrollHeight, 100)}px`
-            }} id="" placeholder="Make quick edit to component"></textarea>
-          <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} className="bg-blue-400 p-1 rounded-md hover:cursor-pointer"><Send fill="white" /></motion.button>
-        </div>
-      </div>
+      <GenerateInput Current_code={EditorValue} setEditorValue={setEditorValue}/>
     </div>
   )
 }
+
+
+const GenerateInput = ({Current_code,setEditorValue}) => {
+  const [editDetails, setEditDetails] = useState("")
+  
+  async function handleReqSendEdit() {
+    console.log(editDetails,Current_code);
+    
+    if(!editDetails || !Current_code){
+      alert("Edit description or Code invalid")
+      return
+    }
+    try {
+      const data = await Edit(Current_code,editDetails)
+      setEditorValue(data)
+      setEditDetails("")
+    } catch (error) {
+      console.log(error.response);
+    }
+    
+  }
+
+  return (
+    <div className="relative p-1 rounded-2xl w-full max-w-2xl mx-auto ">
+      {/* Animated Rainbow Glow Background */}
+      <motion.div
+        className="absolute -inset-[2px] rounded-2xl opacity-75 blur-lg"
+        animate={{
+          background: [
+            "linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000)",
+            "linear-gradient(180deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000)",
+            "linear-gradient(270deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000)",
+            "linear-gradient(360deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000)",
+            "linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000)",
+          ],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+
+      {/* Main Input Container */}
+      <div className="relative flex items-center bg-(--bg) dark:border-t dark:outline outline-(--border) dark:border-(--highlight) rounded-xl px-6 py-4 shadow-2xl">
+        <input
+          type="text"
+          placeholder="Edit your component quickly..."
+          onChange={(e)=>{setEditDetails(e.target.value)}}
+          value={editDetails}
+          className="w-full bg-transparent text-white placeholder-gray-500 text-lg outline-none font-medium"
+        />
+        
+        {/* Generate Button */}
+        <motion.button
+          onClick={handleReqSendEdit}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors"
+        >
+          <svg 
+            width="20" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="white" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </motion.button>
+      </div>
+    </div>
+  );
+};
+
 export default Preview

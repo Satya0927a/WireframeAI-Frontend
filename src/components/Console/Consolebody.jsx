@@ -7,13 +7,21 @@ import Wireframe from "./wireframe"
 import AIModelSelector from "./modelDropdownbtn"
 import { TldrawEditor } from "tldraw"
 
-const DefaultEditorValue = `//Your code will appear here
-//you can directly edit the code, the changes will reflect on the preview 
-const Welcome  = ()=>{
-    return(
-        <section className={"h-screen flex justify-center items-center flex-col"}>
-            <div className={"text-5xl max-sm:text-4xl"}>Welcome to wireframe</div>
-            <p>The Generated code will be previewed here</p>
+const DefaultEditorValue = `
+//The generated code will show here
+import React from 'react';
+
+const Welcome = () => {
+    return (
+        <section className={"h-screen flex justify-center items-center flex-col bg-white p-6 text-center"}>
+            <div className={"space-y-2 max-w-lg"}>
+                <h1 className={"text-3xl md:text-4xl font-light text-slate-900 tracking-tight"}>
+                    wireframeAI
+                </h1>
+                <p className={"text-sm text-slate-400 font-light tracking-widest uppercase"}>
+                    Start building your vision.
+                </p>
+            </div>
         </section>
     )
 }
@@ -74,7 +82,7 @@ const ConsoleBody = ({ theme }) => {
           </div>
         </div>
         <div className=" w-full h-full">
-          <Preview iframe={iframe} EditPrompt={EditPrompt} EditorValue={EditorValue} isHidden={leftwindowMode == 1 ? true : false} />
+          <Preview iframe={iframe} EditPrompt={EditPrompt} setEditorValue={setEditorValue} EditorValue={EditorValue} isHidden={leftwindowMode == 1 ? true : false} />
           <Wireframe WireframePrompt={WireframePrompt} setEditorValue={setEditorValue} isHidden={leftwindowMode == 1 ? false : true} TLeditorRef={TLeditorRef} />
         </div>
       </div>
