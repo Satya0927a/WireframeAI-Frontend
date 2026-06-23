@@ -3,12 +3,11 @@ import { Send } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 
-const Preview = ({ EditPrompt, EditorValue }) => {
+const Preview = ({ EditPrompt, EditorValue,isHidden ,iframe}) => {
   const [editDetails, setEditDetails] = useState(EditPrompt.current)
-  console.log(EditorValue);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-between px-10 py-5">
+    <div className={`w-full h-full ${isHidden?"hidden":"flex"} flex-col items-center justify-between px-10 py-5`}>
       <div className="w-full bg-amber-500 h-fit rounded-2xl my-10 overflow-hidden">
         <SandpackProvider
           options={{
@@ -34,7 +33,7 @@ const Preview = ({ EditPrompt, EditorValue }) => {
         >
           <SandpackLayout className="h-full"
           >
-            <SandpackPreview className="h-full" />
+            <SandpackPreview className="h-full"  onLoad={()=>{iframe.current = document.querySelector('iframe')}} />
           </SandpackLayout>
         </SandpackProvider>
       </div>

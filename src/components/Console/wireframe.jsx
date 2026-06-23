@@ -5,16 +5,15 @@ import { FileIcon, FilePlusCorner, FolderIcon, Send } from "lucide-react";
 import {  useRef, useState } from "react"
 import { CgFileAdd } from "react-icons/cg";
 import { Generate } from "../../services/backend/generate";
-const Wireframe = ({WireframePrompt,setEditorValue}) => {
+const Wireframe = ({WireframePrompt,setEditorValue,isHidden,TLeditorRef}) => {
   const [text, settext] = useState(WireframePrompt.current)
-  const editorRef = useRef(null) //the editor instance 
   async function handleGenerate(){
-    const shapes = editorRef.current.getCurrentPageShapeIds();
+    const shapes = TLeditorRef.current.getCurrentPageShapeIds();
     if(shapes.size === 0){
       alert("No shapes on the canvas")
       return
     }
-    const {blob} = await editorRef.current.toImage([...shapes],{
+    const {blob} = await TLeditorRef.current.toImage([...shapes],{
       format:"png",
       background:"true"
     })
@@ -27,13 +26,13 @@ const Wireframe = ({WireframePrompt,setEditorValue}) => {
   }
   
   return (
-    <div className="w-full h-full flex flex-col items-center justify-between px-10 py-5">
+    <div className={`w-full h-full ${isHidden?"hidden":"flex"} flex-col items-center justify-between px-10 py-5`}>
       <div className=" w-full h-full rounded-2xl py-10 relative z-0">
-        <Tldraw className="rounded-2xl" persistenceKey="DefaultKeyForNow" onMount={(e)=>{
-          editorRef.current = e
+        <Tldraw className="rounded-2xl" persistenceKey="DefaultKeyForNow" autoFocus={false} onMount={(e)=>{
+          TLeditorRef.current = e;
         }}/>
       </div>
-      <div className="bg-(--bg) dark:border-t-1 dark:outline outline-(--border) dark:border-(--highlight) shadow-(--shadow-btn)  w-full max-w-200 rounded-2xl flex flex-col gap-5 p-5">
+      <div className="bg-(--bg) dark:border-t dark:outline outline-(--border) dark:border-(--highlight) shadow-(--shadow-btn)  w-full max-w-200 rounded-2xl flex flex-col gap-5 p-5">
         <div>
           <FilePlusCorner />
         </div>
