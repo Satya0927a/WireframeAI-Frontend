@@ -8,6 +8,7 @@ import Signup from "./pages/Signup";
 import Termofuse from "./pages/Termofuse";
 import Privacy from "./pages/Privacy"
 import Console from './pages/Console';
+import ForgotP from "./pages/ForgotP";
 
 function App() {
 
@@ -36,6 +37,9 @@ function App() {
 
       {/* Console  */}
       <Route path="/console" element={<Console />} />
+
+      {/* Forgot Password */}
+      <Route path="/forgot-password" element={<ForgotP />} />
 
     </Routes>
     </BrowserRouter>
