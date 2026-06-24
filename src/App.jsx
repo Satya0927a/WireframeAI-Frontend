@@ -9,6 +9,7 @@ import Termofuse from "./pages/Termofuse";
 import Privacy from "./pages/Privacy"
 import Console from './pages/Console';
 import ForgotP from "./pages/ForgotP";
+import Pricing from "./components/Pricing";
 
 function App() {
 
@@ -40,6 +41,9 @@ function App() {
 
       {/* Forgot Password */}
       <Route path="/forgot-password" element={<ForgotP />} />
+
+      {/* Pricing */}
+      <Route path="/pricing" element={<Pricing />} />
 
     </Routes>
     </BrowserRouter>

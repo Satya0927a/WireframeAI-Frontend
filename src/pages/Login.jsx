@@ -1,17 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
-import { FaGoogle, FaGithub } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
 import Back from "../assets/back.png";
+import Google from "../assets/google.png";
 
 function Login() {
   const navigate = useNavigate();
 
   return (
-    <div className=" px-6 pt-8 background">
+    <div className="min-h-screen bg-gray-50 px-6 pt-8">
       {/* Back Button */}
       <button
+        type="button"
         onClick={() => navigate("/")}
-        className="mb-16"
+        className="mb-16 cursor-pointer"
       >
         <img
           src={Back}
@@ -23,7 +23,7 @@ function Login() {
       <div className="max-w-md mx-auto">
         {/* Heading */}
         <div className="text-center">
-          <h1 className="text-white text-[32px] font-serif font-bold">
+          <h1 className="text-[32px] font-serif font-bold text-gray-900">
             Welcome back to
             <br />
             Wireframe AI
@@ -35,26 +35,29 @@ function Login() {
           <input
             type="email"
             placeholder="Email address"
-            className="w-full h-16 px-6 rounded-full bg-[#262626] border-t-2 border-white text-[#BFBFBF]"
+            className="w-full h-16 px-6 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
           />
 
           <input
             type="password"
             placeholder="Password"
-            className="w-full h-16 px-6 rounded-full bg-[#262626] border-t-2 border-white text-[#BFBFBF]"
+            className="w-full py-5 px-8 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
           />
         </div>
 
         {/* Remember + Forgot */}
-        <div className="flex justify-between items-center mt-4 text-[#BFBFBF] text-sm">
-          <label className="flex items-center gap-2">
-            <input type="checkbox"/>
+        <div className="flex justify-between items-center mt-4 text-gray-600 text-sm">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              className="accent-orange-500"
+            />
             Remember me
           </label>
 
           <Link
             to="/forgot-password"
-            className="underline text-[#BFBFBF]"
+            className="text-orange-500 hover:underline"
           >
             Forgot Password?
           </Link>
@@ -62,41 +65,41 @@ function Login() {
 
         {/* Login Button */}
         <button
-          className="w-full h-16 bg-[#FF9B51] border-t-2 border-white rounded-full mt-6 text-black text-2xl font-bold font-serif hover:scale-105 transition-all"
+          type="button"
+          className="w-full h-16 bg-[#FF9B51] rounded-full mt-6 text-black text-2xl font-bold font-serif hover:scale-105 transition-all cursor-pointer"
         >
           Login
         </button>
 
         {/* Divider */}
-        <div className="flex items-center gap-3 mt-10">
-          <div className="flex-1 h-[1px] bg-gray-500"></div>
-          <span className="text-gray-400 text-sm">
+        <div className="flex items-center gap-3 mt-6">
+          <div className="flex-1 h-[1px] bg-gray-300"></div>
+          <span className="text-gray-500 text-sm">
             or login with
           </span>
-          <div className="flex-1 h-[1px] bg-gray-500"></div>
+          <div className="flex-1 h-[1px] bg-gray-300"></div>
         </div>
 
-        {/* Social Login */}
-        <div className="flex justify-center gap-4 mt-8">
-          <button className="w-20 h-16 border border-white rounded-2xl flex items-center justify-center">
-            <FaXTwitter className="text-white text-3xl" />
-          </button>
-
-          <button className="w-20 h-16 border border-white rounded-2xl flex items-center justify-center">
-            <FaGoogle className="text-3xl text-white" />
-          </button>
-
-          <button className="w-20 h-16 border border-white rounded-2xl flex items-center justify-center">
-            <FaGithub className="text-white text-3xl" />
+        {/* Google Login */}
+        <div className="flex justify-center mt-6">
+          <button
+            type="button"
+            className="w-16 h-16 cursor-pointer bg-white border border-gray-300 rounded-2xl flex items-center justify-center hover:shadow-md transition"
+          >
+            <img
+              src={Google}
+              alt="Google"
+              className="w-8 h-8"
+            />
           </button>
         </div>
 
         {/* Signup Link */}
-        <div className="mt-10 text-center text-white text-sm">
+        <div className="mt-10 text-center text-sm text-gray-700">
           Don't have an account?{" "}
           <Link
             to="/signup"
-            className="text-orange-400 font-semibold underline"
+            className="text-orange-500 font-semibold underline"
           >
             Sign Up
           </Link>
