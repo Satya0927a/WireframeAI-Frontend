@@ -1,72 +1,117 @@
-import { useState } from "react";
-
-const testimonials = [
-  {
-    text: "The team is committed to excellence of the company...",
-    name: "Satya",
-    role: "Founder",
-  },
-  {
-    text: "Amazing service and great support!",
-    name: "Devesh",
-    role: "Co-Founder",
-  },
-  {
-    text: "Highly recommended for developers.",
-    name: "Tony Stark",
-    role: "Engineer",
-  },
-  {
-    text: "Highly recommended for developers.",
-    name: "Vedansh",
-    role: "Mbbs",
-  },
-];
-
-function TestimonialStack() {
-  const [cards, setCards] = useState(testimonials);
-
-  const handleClick = () => {
-    const newCards = [...cards];
-    const first = newCards.shift();
-    newCards.push(first);
-    setCards(newCards);
-  };
+function Say() {
+  const testimonials = [
+    {
+      name: "Rahul Sharma",
+      college: "AKTU University",
+      text: "Being a Stulo Ambassador helped me improve my communication and leadership skills.",
+    },
+    {
+      name: "Priya Singh",
+      college: "Delhi University",
+      text: "I connected with amazing students and gained real-world experience.",
+    },
+    {
+      name: "Aman Verma",
+      college: "IIT Kanpur",
+      text: "The program gave me confidence and valuable networking opportunities.",
+    },
+    {
+      name: "Sneha Gupta",
+      college: "NIT Jaipur",
+      text: "One of the best opportunities for personal and professional growth.",
+    },
+    {
+      name: "Rohit Kumar",
+      college: "BHU",
+      text: "The Stulo Ambassador Program helped me build confidence and leadership skills.",
+    },
+    {
+      name: "Ananya Singh",
+      college: "IIIT Lucknow",
+      text: "I learned networking, event management and communication through this program.",
+    },
+  ];
 
   return (
-<div className=" flex flex-col items-center mt-10 px-4 sm:px-6 md:px-10">
-      <h1 className="text-white text-2xl mb-6">
-        What they say about Us
-      </h1>
+    <div className=" py-10 md:py-20 overflow-hidden">
 
-     <div className="relative w-full max-w-[350px] h-[220px]">
+      {/* Heading */}
+      <div className="text-center px-4">
+        <h1 className="text-3xl md:text-5xl font-bold text-gray-800">
+          What Developers have to say
+        </h1>
 
-        {cards.map((card, index) => (
-          <div
-            key={index}
-            onClick={index === 0 ? handleClick : null}
-            className="absolute w-full p-5 rounded-2xl cursor-pointer bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] text-white shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl transition duration-300"
-            style={{
-              zIndex: cards.length - index,
-              transform: `translateY(${index * 12}px) scale(${1 - index * 0.05})`,
-              opacity: index === 2 ? 0.6 : 1,
-            }}
-          >
-            <p className="text-sm text-gray-300">{card.text}</p>
-
-            <div className="mt-4 flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-gray-500"></div>
-              <div>
-                <h4 className="text-sm font-bold">{card.name}</h4>
-                <p className="text-xs text-gray-400">{card.role}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-
+        <p className="mt-3 text-sm md:text-base text-gray-500">
+          A word from our developers about their experience.
+        </p>
       </div>
+
+      {/* Row 1 */}
+      <div className="overflow-hidden mt-10 md:mt-14 cursor-pointer">
+        <div className="flex gap-4 md:gap-6 w-max animate-marquee-left">
+
+          {[...testimonials, ...testimonials].map((item, index) => (
+            <div
+              key={index}
+              className="w-[230px] sm:w-[280px] md:w-[400px] lg:w-[500px]
+              bg-white rounded-3xl p-4 md:p-6 shadow-md
+              border-b-[5px] border-r-[5px] border-blue-800"
+            >
+              <div className="text-3xl md:text-5xl text-blue-800">
+                ❝
+              </div>
+
+              <p className="mt-2 text-sm md:text-base text-gray-600">
+                {item.text}
+              </p>
+
+              <h2 className="mt-4 md:mt-6 font-bold text-gray-800">
+                {item.name}
+              </h2>
+
+              <p className="text-xs md:text-sm text-gray-500">
+                {item.college}
+              </p>
+            </div>
+          ))}
+
+        </div>
+      </div>
+
+      {/* Row 2 */}
+      <div className="overflow-hidden mt-6 md:mt-8 cursor-pointer">
+        <div className="flex gap-4 md:gap-6 w-max animate-marquee-right">
+
+          {[...testimonials, ...testimonials].map((item, index) => (
+            <div
+              key={index}
+              className="w-[230px] sm:w-[280px] md:w-[400px] lg:w-[500px]
+              bg-white rounded-3xl p-4 md:p-6 shadow-md
+              border-b-[5px] border-r-[5px] border-blue-800"
+            >
+              <div className="text-3xl md:text-5xl text-blue-800">
+                ❝
+              </div>
+
+              <p className="mt-2 text-sm md:text-base text-gray-600">
+                {item.text}
+              </p>
+
+              <h2 className="mt-4 md:mt-6 font-bold text-gray-800">
+                {item.name}
+              </h2>
+
+              <p className="text-xs md:text-sm text-gray-500">
+                {item.college}
+              </p>
+            </div>
+          ))}
+
+        </div>
+      </div>
+
     </div>
   );
 }
 
-export default TestimonialStack;
+export default Say;

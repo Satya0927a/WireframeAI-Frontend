@@ -7,16 +7,16 @@
 }
 
 :root {
- --border: hsl(220 19% 33%);
+ --border: hsl(220 19% 53%);
   --border-light: hsl(0 0 100%);
-  --highlight: hsl(0, 0%, 77%);
+  --highlight: hsl(0, 0%, 100%);
   --shadow-btn: 0px 4px 4px #00000030, 0px 12px 12px #00000015;
   --shadow-card-info: 0px 1px 1px #00000030, 0px 3px 3px #00000015;
 }
 
 .light {
 
-  --bg-dark: hsl(220 59% 85%);
+  --bg-dark: hsl(220 59% 90%);
   --bg: hsl(220 100% 95%);
   --bg-light: hsl(220 100% 100%);
   --text: hsl(226 85% 7%);
@@ -29,4 +29,72 @@
   --bg-dark: hsl(0, 0%, 0%);
   --text: hsl(226 85% 93%);
   --text-muted: hsl(220 26% 69%); 
+}
+@import "tailwindcss";
+
+
+@font-face {
+  font-family: 'Mazzard H';
+  font-weight: 400;
+  font-style: normal;
+  src: url('https://db.onlinewebfonts.com/t/eb5b5ee332420add9a40ee988cb6ac37.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/eb5b5ee332420add9a40ee988cb6ac37.woff') format('woff'),
+       url('https://db.onlinewebfonts.com/t/eb5b5ee332420add9a40ee988cb6ac37.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Mazzard H';
+  font-weight: 500;
+  font-style: normal;
+  src: url('https://db.onlinewebfonts.com/t/875fffdfa62169a0f131e90f37f1faf4.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/875fffdfa62169a0f131e90f37f1faf4.woff') format('woff'),
+       url('https://db.onlinewebfonts.com/t/875fffdfa62169a0f131e90f37f1faf4.ttf') format('truetype');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, * { font-family: 'Mazzard H', sans-serif; }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade {
+  animation: fade 0.5s ease-out;
+}
+
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-left {
+  animation: marqueeLeft 25s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marqueeRight 25s linear infinite;
 }
