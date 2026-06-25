@@ -23,7 +23,7 @@ function Navbar() {
             to="/solutions"
             className="flex items-center gap-1 text-sm text-gray-600 hover:text-black transition hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
           >
-            Solutions
+            Blog
 
           </Link>
 
