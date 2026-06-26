@@ -34,7 +34,7 @@ function App() {
       <Route path="/term" element={<Termofuse />} />
 
       {/* Privacy */}
-      <Route path="/Priavcy" element={<Privacy />} />
+      <Route path="/Privacy" element={<Privacy />} />
 
       {/* Console  */}
       <Route path="/console" element={<Console />} />

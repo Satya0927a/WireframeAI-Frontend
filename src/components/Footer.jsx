@@ -48,6 +48,7 @@
 
 
 import React, { useEffect, useRef } from 'react';
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const svgRef = useRef(null);
@@ -169,25 +170,79 @@ export default function Footer() {
           {/* Navigation Links Grid Row */}
           <div className="flex">
             <div className="flex flex-row gap-10 sm:gap-[72px] pt-2">
-              <div className="flex flex-col">
-                <h3 className="font-['Caveat',_cursive] text-2xl font-semibold italic text-[#4b5563] mb-4">
-                  Navigation
-                </h3>
-                <a href="#" className="block text-sm font-semibold text-[#cbd5e1] no-underline mb-3 transition-colors duration-200 hover:text-[#3b82f6]">How it works</a>
-                <a href="#" className="block text-sm font-semibold text-[#cbd5e1] no-underline mb-3 transition-colors duration-200 hover:text-[#3b82f6]">Features</a>
-                <a href="#" className="block text-sm font-semibold text-[#cbd5e1] no-underline mb-3 transition-colors duration-200 hover:text-[#3b82f6]">Pricing</a>
-                <a href="#" className="block text-sm font-semibold text-[#cbd5e1] no-underline mb-3 transition-colors duration-200 hover:text-[#3b82f6]">Testimonials</a>
-                <a href="#" className="block text-sm font-semibold text-[#cbd5e1] no-underline mb-3 transition-colors duration-200 hover:text-[#3b82f6]">FAQ</a>
-              </div>
-              <div className="flex flex-col">
-                <h3 className="font-['Caveat',_cursive] text-2xl font-semibold italic text-[#4b5563] mb-4">
-                  Company
-                </h3>
-                <a href="#" className="block text-sm font-semibold text-[#cbd5e1] no-underline mb-3 transition-colors duration-200 hover:text-[#3b82f6]">Blog</a>
-                <a href="#" className="block text-sm font-semibold text-[#cbd5e1] no-underline mb-3 transition-colors duration-200 hover:text-[#3b82f6]">About</a>
-                <a href="#" className="block text-sm font-semibold text-[#cbd5e1] no-underline mb-3 transition-colors duration-200 hover:text-[#3b82f6]">Terms and Condition</a>
-                <a href="#" className="block text-sm font-semibold text-[#cbd5e1] no-underline mb-3 transition-colors duration-200 hover:text-[#3b82f6]">Privacy Policy</a>
-              </div>
+             <div className="flex flex-col">
+  <h3 className="font-['Caveat'] text-2xl font-semibold italic text-[#4b5563] mb-4">
+    Navigation
+  </h3>
+
+  <Link
+    to="/"
+    className="block text-sm font-semibold text-[#cbd5e1] mb-3 transition-colors duration-200 hover:text-[#3b82f6]"
+  >
+    Home
+  </Link>
+
+  <Link
+    to="/features"
+    className="block text-sm font-semibold text-[#cbd5e1] mb-3 transition-colors duration-200 hover:text-[#3b82f6]"
+  >
+    Features
+  </Link>
+
+  <Link
+    to="/pricing"
+    className="block text-sm font-semibold text-[#cbd5e1] mb-3 transition-colors duration-200 hover:text-[#3b82f6]"
+  >
+    Pricing
+  </Link>
+
+  <Link
+    to="/testimonials"
+    className="block text-sm font-semibold text-[#cbd5e1] mb-3 transition-colors duration-200 hover:text-[#3b82f6]"
+  >
+    Testimonials
+  </Link>
+
+  <Link
+    to="/faq"
+    className="block text-sm font-semibold text-[#cbd5e1] transition-colors duration-200 hover:text-[#3b82f6]"
+  >
+    FAQ
+  </Link>
+</div>
+             <div className="flex flex-col">
+  <h3 className="font-['Caveat'] text-2xl font-semibold italic text-[#4b5563] mb-4">
+    Company
+  </h3>
+
+  <Link
+    to="/blog"
+    className="block text-sm font-semibold text-[#cbd5e1] mb-3 transition-colors duration-200 hover:text-[#3b82f6]"
+  >
+    Blog
+  </Link>
+
+  <Link
+    to="/about"
+    className="block text-sm font-semibold text-[#cbd5e1] mb-3 transition-colors duration-200 hover:text-[#3b82f6]"
+  >
+    About
+  </Link>
+
+  <Link
+    to="/terms"
+    className="block text-sm font-semibold text-[#cbd5e1] mb-3 transition-colors duration-200 hover:text-[#3b82f6]"
+  >
+    Terms & Conditions
+  </Link>
+
+  <Link
+    to="/privacy"
+    className="block text-sm font-semibold text-[#cbd5e1] transition-colors duration-200 hover:text-[#3b82f6]"
+  >
+    Privacy Policy
+  </Link>
+</div>
             </div>
           </div>
           
