@@ -10,6 +10,7 @@ import Privacy from "./pages/Privacy"
 import Console from './pages/Console';
 import ForgotP from "./pages/ForgotP";
 import Pricing from "./components/Pricing";
+import Tryit from "./components/Tryit";
 
 function App() {
 
@@ -44,6 +45,9 @@ function App() {
 
       {/* Pricing */}
       <Route path="/pricing" element={<Pricing />} />
+
+            <Route path="/tryit" element={<Tryit />} />
+
 
     </Routes>
     </BrowserRouter>
