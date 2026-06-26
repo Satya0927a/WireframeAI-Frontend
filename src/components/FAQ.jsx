@@ -55,11 +55,11 @@ function FAQ() {
               onClick={() => toggleFAQ(index)}
               className="w-full flex justify-between items-center text-left cursor-pointer group"
             >
-            <span className="text-gray-900 font-medium transition-colors duration-300 group-hover:text-orange-500">
+            <span className="text-gray-900 font-medium transition-colors duration-300 group-hover:text-blue-500">
   {faq.question}
 </span>
 
-              <span className="text-orange-400 text-3xl transition-transform duration-300 group-hover:scale-125">
+              <span className="text-blue-400 text-3xl transition-transform duration-300 group-hover:scale-125">
   {activeIndex === index ? "−" : "+"}
 </span>
             </button>
