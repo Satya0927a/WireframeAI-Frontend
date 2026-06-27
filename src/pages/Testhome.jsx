@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { Star, ChevronDown, BarChart3, BookOpen, Users, Rocket } from "lucide-react";
 import Console from "./Console";
+import Demo from "./Viewdemo";
+import Wire from "../assets/wire.mp4";
 
 function App() {
     return (
@@ -23,28 +25,39 @@ function App() {
                 </h1>
 
                 <p className="mt-4 max-w-2xl text-gray-600">
-                     Generate quick react components for your website using our wireframe to react components generator powered by AI.
+                    Generate quick react components for your website using our wireframe to react components generator powered by AI.
                 </p>
             </div>
 
             <div className="mt-15 flex justify-center gap-10">
-            <button className=" border border-black bg-black text-white rounded-full w-30 h-10">
-                <Link
-                to="/Console"
-                >
-                    Get Started
-                
-                </Link>
-            </button>
+                <button className=" border border-black bg-black text-white rounded-full w-30 h-10">
+                    <Link
+                        to="/Console"
+                    >
+                        Get Started
 
-            <button className="border border-black bg-black text-white rounded-full w-30 h-10">
-                <Link
-                to="/Console"
-                >
-                    View Demo
-                
-                </Link>
-            </button>
+                    </Link>
+                </button>
+
+                <button className="border border-black bg-black text-white rounded-full w-30 h-10">
+                    <Link
+                        to="/Demo"
+                    >
+                        View Demo
+
+                    </Link>
+                </button>
+            </div>
+
+            <div className="relative z-10 max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-200 mt-10">
+                <video src={Wire}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-auto object-cover scale-110 ">
+
+                </video>
             </div>
         </section>
     )

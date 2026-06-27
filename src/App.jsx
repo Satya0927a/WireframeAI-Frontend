@@ -12,6 +12,7 @@ import ForgotP from "./pages/ForgotP";
 import Pricing from "./components/Pricing";
 import Tryit from "./components/Tryit";
 import Test from "./pages/Testhome";
+import Demo from "./pages/Viewdemo";
 
 function App() {
 
@@ -50,6 +51,8 @@ function App() {
         <Route path="/tryit" element={<Tryit />} />
 
         <Route path="/test" element={<Test />} />
+
+        <Route path="/demo" element={<Demo />} />
 
 
 
