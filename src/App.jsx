@@ -11,45 +11,51 @@ import Console from './pages/Console';
 import ForgotP from "./pages/ForgotP";
 import Pricing from "./components/Pricing";
 import Tryit from "./components/Tryit";
+import Test from "./pages/Testhome";
 
 function App() {
 
   return (
     <BrowserRouter>
-    <ScrollToTop />
-    <Routes>
+      <ScrollToTop />
+      <Routes>
 
-    {/* Home page */}
-      <Route path="/" element={<Home />} />
+        {/* Home page */}
+        <Route path="/" element={<Home />} />
 
-      {/* About page */}
-      <Route path="/about" element={<About />} />
+        {/* About page */}
+        <Route path="/about" element={<About />} />
 
-      {/* Login */}
-      <Route path="/login" element={<Login />} />
+        {/* Login */}
+        <Route path="/login" element={<Login />} />
 
-      {/* Signup */}
-      <Route path="/Signup" element={<Signup />} />
+        {/* Signup */}
+        <Route path="/Signup" element={<Signup />} />
 
-      {/* Termofuse */}
-      <Route path="/term" element={<Termofuse />} />
+        {/* Termofuse */}
+        <Route path="/term" element={<Termofuse />} />
 
-      {/* Privacy */}
-      <Route path="/Privacy" element={<Privacy />} />
+        {/* Privacy */}
+        <Route path="/Privacy" element={<Privacy />} />
 
-      {/* Console  */}
-      <Route path="/console" element={<Console />} />
+        {/* Console  */}
+        <Route path="/console" element={<Console />} />
 
-      {/* Forgot Password */}
-      <Route path="/forgot-password" element={<ForgotP />} />
+        {/* Forgot Password */}
+        <Route path="/forgot-password" element={<ForgotP />} />
 
-      {/* Pricing */}
-      <Route path="/pricing" element={<Pricing />} />
+        {/* Pricing */}
+        <Route path="/pricing" element={<Pricing />} />
 
-            <Route path="/tryit" element={<Tryit />} />
+        <Route path="/tryit" element={<Tryit />} />
+
+        <Route path="/test" element={<Test />} />
 
 
-    </Routes>
+
+
+
+      </Routes>
     </BrowserRouter>
   );
 }
