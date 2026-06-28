@@ -4,62 +4,76 @@ import { Star, ChevronDown, BarChart3, BookOpen, Users, Rocket } from "lucide-re
 import Console from "./Console";
 import Demo from "./Viewdemo";
 import Wire from "../assets/wire.mp4";
+import Navbar from "../components/Navbar";
+import Land from "../components/Land";
 
 function App() {
     return (
-        <section className="">
+        <section className="relative min-h-screen w-full bg-white overflow-hidden">
+            <Navbar />
 
-            {/* Trust Badge */}
-            <div className={"flex justify-center mt-35"}>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full shadow-sm">
-                    <Star className="w-3 h-3 fill-black stroke-none" />
-                    <span className="text-xs font-medium text-gray-700">4.9 rating from 18.3K+ users</span>
+            {/* FULL BACKGROUND LAYER: Spans across the entire page background */}
+            <div className="fixed inset-0 w-full h-full z-0 pointer-events-none left-[-500px] top-[-45px]">
+                <div className="w-full h-full pointer-events-auto">
+                    <Land />
                 </div>
             </div>
 
-            <div className="flex flex-col items-center text-center mt-15">
-                <h1 className="text-[52px] font-bold leading-tight">
-                    Turn Components into
-                    <br />
-                    Production Code
-                </h1>
+            {/* HERO CONTENT CONTAINER */}
+            <div className="relative max-w-6xl mx-auto w-full px-6">
+                
+                {/* Trust Badge */}
+                <div className="flex justify-center mt-22 relative z-10">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full shadow-sm">
+                        <Star className="w-3 h-3 fill-black stroke-none" />
+                        <span className="text-xs font-medium text-gray-700">4.9 rating from 18.3K+ users</span>
+                    </div>
+                </div>
 
-                <p className="mt-4 max-w-2xl text-gray-600">
-                    Generate quick react components for your website using our wireframe to react components generator powered by AI.
-                </p>
+                {/* Heading */}
+                <div className="flex flex-col items-center text-center mt-6 relative z-10">
+                    <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[0.95] text-black">
+                        Turn Components into
+                        <br />
+                        <span className="bg-gradient-to-r from-black via-blue-500 to-blue-400 bg-clip-text text-transparent mt-50">
+                            Production Code
+                        </span>
+                    </h1>
+
+                    <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mt-5">
+                        Generate quick react components for your website using our wireframe to react components generator powered by AI.
+                    </p>
+                </div>
+
+                {/* Buttons */}
+                <div className="mt-15 flex justify-center gap-10 relative z-10">
+                    <button className="border border-black bg-black text-white rounded-full w-30 h-10 font-semibold hover:text-orange-400 transition-colors">
+                        <Link to="/Console" className="w-full h-full flex items-center justify-center">
+                            Get Started
+                        </Link>
+                    </button>
+
+                    <button className="border border-black bg-black text-white rounded-full w-30 h-10 font-semibold hover:text-blue-500 transition-colors">
+                        <Link to="/Demo" className="w-full h-full flex items-center justify-center">
+                            View Demo
+                        </Link>
+                    </button>
+                </div>
             </div>
 
-            <div className="mt-15 flex justify-center gap-10">
-                <button className=" border border-black bg-black text-white rounded-full w-30 h-10">
-                    <Link
-                        to="/Console"
-                    >
-                        Get Started
-
-                    </Link>
-                </button>
-
-                <button className="border border-black bg-black text-white rounded-full w-30 h-10">
-                    <Link
-                        to="/Demo"
-                    >
-                        View Demo
-
-                    </Link>
-                </button>
-            </div>
-
-            <div className="relative z-10 max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-200 mt-10">
-                <video src={Wire}
+            {/* Video */}
+            <div className="relative z-10 max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-200 mt-24 mb-20 px-4 sm:px-0">
+                <video 
+                    src={Wire}
                     autoPlay
                     muted
                     loop
                     playsInline
-                    className="w-full h-auto object-cover scale-110 ">
-
-                </video>
+                    className="w-full h-auto object-cover scale-110"
+                />
             </div>
         </section>
-    )
+    );
 }
+
 export default App;
