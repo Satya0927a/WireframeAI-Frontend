@@ -72,6 +72,29 @@ function App() {
                     className="w-full h-auto object-cover scale-110"
                 />
             </div>
+
+             {/* MARQUEE BRAND SECTION */}
+              <div>
+                <div className="mt-20 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 select-none opacity-50">
+                  <span className="text-xs font-bold tracking-[0.15em] uppercase text-gray-800">Interscope</span>
+                  <span className="text-xs font-bold tracking-[0.12em] uppercase text-gray-800">Spotify</span>
+                  <span className="flex items-center gap-1.5 text-xs font-medium text-gray-800">
+                    <span className="grid grid-cols-2 gap-0.5">
+                      {[...Array(4)].map((_, i) => <span key={i} className="w-1 h-1 rounded-full bg-gray-700 block" />)}
+                    </span>
+                    Nexera
+                  </span>
+                  <span className="text-sm font-bold text-gray-800 font-serif italic">M3</span>
+                  <span className="flex items-center gap-1.5 text-xs font-medium tracking-wide uppercase text-gray-800">
+                    <span className="w-4 h-4 rounded-full border border-gray-400 flex items-center justify-center text-[8px] font-bold">LC</span>
+                    Laura Cole
+                  </span>
+                  <span className="flex items-center gap-1 text-xs font-medium text-gray-800">
+                    vertex
+                    {[...Array(3)].map((_, i) => <span key={i} className="w-[3px] h-[3px] rounded-full bg-gray-400 inline-block ml-0.5" />)}
+                  </span>
+                </div>
+              </div>
         </section>
     );
 }
