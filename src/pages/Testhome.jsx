@@ -6,6 +6,11 @@ import Demo from "./Viewdemo";
 import Wire from "../assets/wire.mp4";
 import Navbar from "../components/Navbar";
 import Land from "../components/Land";
+import Say from "../components/Testimonial"
+import Pricing from "../components/Pricing";
+import FAQ from "../components/FAQ";
+import Footer from "../components/Footer";
+import Tryit from "../components/Tryit";
 
 function App() {
     return (
@@ -95,6 +100,12 @@ function App() {
                   </span>
                 </div>
               </div>
+               
+      <Pricing />
+      <Say />
+      <FAQ />
+      <Tryit />
+      <Footer />
         </section>
     );
 }

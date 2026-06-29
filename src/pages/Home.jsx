@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Star, ChevronDown, BarChart3, BookOpen, Users, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 import Wire from "../assets/wire.mp4";
-// import Dotgrid from "../components/Dotgrid";
+import Dotgrid from "../components/Dotgrid";
 import Precision from "../components/Features";
 import Navbar from "../components/Navbar";
 import Say from "../components/Testimonial"
@@ -219,9 +219,9 @@ export default function StellarHero() {
         <header className="relative w-full overflow-hidden">
           
           {/* Dotgrid Background wrapper: trapped inside the header context */}
-          {/* <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 z-0 pointer-events-none">
             <Dotgrid />
-          </div> */}
+          </div>
 
           {/* Hero Content (Pushed visually above Dotgrid using z-10) */}
           <div className="relative z-10 max-w-6xl mx-auto px-6 pt-24 pb-28 text-center ">
