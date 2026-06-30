@@ -5,17 +5,20 @@ import Console from "./Console";
 import Demo from "./Viewdemo";
 import Wire from "../assets/wire.mp4";
 import Navbar from "../components/Navbar";
-// import Say from "../components/Testimonial"
-// import Pricing from "../components/Pricing";
-// import FAQ from "../components/FAQ";
-// import Footer from "../components/Footer";
-// import Tryit from "../components/Tryit";
-// import Precision from "../components/Features";
+import Say from "../components/Testimonial"
+import Pricing from "../components/Pricing";
+import FAQ from "../components/FAQ";
+import Footer from "../components/Footer";
+import Tryit from "../components/Tryit";
+import Precision from "../components/Features";
+import Dotgrid from "../components/Dotgrid";
 
 function App() {
     return (
         <section className="relative min-h-screen w-full bg-white overflow-hidden">
             <Navbar />
+
+            <Dotgrid />
 
 
             {/* HERO CONTENT CONTAINER */}
@@ -97,12 +100,12 @@ function App() {
 
 
 
-               {/* <Precision /> */}
-      {/* <Pricing /> */}
-      {/* <Say /> */}
-      {/* <FAQ /> */}
-      {/* <Tryit /> */}
-      {/* <Footer /> */}
+               <Precision />
+      <Pricing /> 
+       <Say /> 
+       <FAQ /> 
+       <Tryit /> 
+       <Footer />
         </section>
     );
 }
