@@ -11,7 +11,6 @@ import FAQ from "../components/FAQ";
 import Footer from "../components/Footer";
 import Tryit from "../components/Tryit";
 import Console from "./Console";
-import Land from "../components/Land";
 
 const TABS = [
   { id: "draw", label: "Draw", icon: BarChart3 },
@@ -215,11 +214,6 @@ export default function StellarHero() {
         
 
         <Navbar />
-        <div className="fixed inset-0 w-full h-full z-0 pointer-events-none left-[-500px] top-[-45px]">
-                        <div className="w-full h-full pointer-events-auto">
-                            <Land />
-                        </div>
-                    </div>
 
         {/* HERO SECTION CONTAINER - Scoped explicitly with relative position and overflow-hidden */}
         <header className="relative w-full overflow-hidden">

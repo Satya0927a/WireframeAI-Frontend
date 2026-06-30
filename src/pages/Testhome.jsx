@@ -5,24 +5,18 @@ import Console from "./Console";
 import Demo from "./Viewdemo";
 import Wire from "../assets/wire.mp4";
 import Navbar from "../components/Navbar";
-import Land from "../components/Land";
 import Say from "../components/Testimonial"
 import Pricing from "../components/Pricing";
 import FAQ from "../components/FAQ";
 import Footer from "../components/Footer";
 import Tryit from "../components/Tryit";
+import Precision from "../components/Features";
 
 function App() {
     return (
         <section className="relative min-h-screen w-full bg-white overflow-hidden">
             <Navbar />
 
-            {/* FULL BACKGROUND LAYER: Spans across the entire page background */}
-            <div className="fixed inset-0 w-full h-full z-0 pointer-events-none left-[-500px] top-[-45px]">
-                <div className="w-full h-full pointer-events-auto">
-                    <Land />
-                </div>
-            </div>
 
             {/* HERO CONTENT CONTAINER */}
             <div className="relative max-w-6xl mx-auto w-full px-6">
@@ -100,7 +94,7 @@ function App() {
                   </span>
                 </div>
               </div>
-               
+               <Precision />
       <Pricing />
       <Say />
       <FAQ />
