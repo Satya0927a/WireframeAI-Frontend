@@ -1,4 +1,4 @@
-import Dotgrid from "./Dotgrid"
+
 
 const LOGO_ICON =
   'https://cdn.prod.website-files.com/6720dd1ab6df0da205830ab1/6870f623cf3df417ce45df05_icon%20logo%20eternacloud.png';
@@ -32,9 +32,7 @@ const PILLARS = [
       }}
     >
 
-      <div className="absolute inset-0 z-10 ">
-    <Dotgrid />
-  </div>
+      
       {/* Block 1 — Header */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 36 }}>
 

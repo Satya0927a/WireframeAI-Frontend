@@ -5,12 +5,12 @@ import Console from "./Console";
 import Demo from "./Viewdemo";
 import Wire from "../assets/wire.mp4";
 import Navbar from "../components/Navbar";
-import Say from "../components/Testimonial"
-import Pricing from "../components/Pricing";
-import FAQ from "../components/FAQ";
-import Footer from "../components/Footer";
-import Tryit from "../components/Tryit";
-import Precision from "../components/Features";
+// import Say from "../components/Testimonial"
+// import Pricing from "../components/Pricing";
+// import FAQ from "../components/FAQ";
+// import Footer from "../components/Footer";
+// import Tryit from "../components/Tryit";
+// import Precision from "../components/Features";
 
 function App() {
     return (
@@ -19,7 +19,7 @@ function App() {
 
 
             {/* HERO CONTENT CONTAINER */}
-            <div className="relative max-w-6xl mx-auto w-full px-6">
+            <div className=" max-w-6xl mx-auto w-full px-6">
                 
                 {/* Trust Badge */}
                 <div className="flex justify-center mt-22 relative z-10">
@@ -47,13 +47,13 @@ function App() {
                 {/* Buttons */}
                 <div className="mt-15 flex justify-center gap-10 relative z-10">
                     <button className="border border-black bg-black text-white rounded-full w-30 h-10 font-semibold hover:text-orange-400 transition-colors">
-                        <Link to="/Console" className="w-full h-full flex items-center justify-center">
+                        <Link to="/console" className="w-full h-full flex items-center justify-center">
                             Get Started
                         </Link>
                     </button>
 
                     <button className="border border-black bg-black text-white rounded-full w-30 h-10 font-semibold hover:text-blue-500 transition-colors">
-                        <Link to="/Demo" className="w-full h-full flex items-center justify-center">
+                        <Link to="/demo" className="w-full h-full flex items-center justify-center">
                             View Demo
                         </Link>
                     </button>
@@ -94,12 +94,15 @@ function App() {
                   </span>
                 </div>
               </div>
-               <Precision />
-      <Pricing />
-      <Say />
-      <FAQ />
-      <Tryit />
-      <Footer />
+
+
+
+               {/* <Precision /> */}
+      {/* <Pricing /> */}
+      {/* <Say /> */}
+      {/* <FAQ /> */}
+      {/* <Tryit /> */}
+      {/* <Footer /> */}
         </section>
     );
 }
