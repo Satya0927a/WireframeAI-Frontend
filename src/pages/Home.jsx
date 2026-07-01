@@ -205,14 +205,14 @@ export default function StellarHero() {
 =======
                 {/* Buttons */}
                 <div className="mt-15 flex justify-center gap-10 relative z-10">
-                    <button className="border border-black bg-black text-white rounded-full w-30 h-10 font-semibold hover:text-orange-400 transition-colors">
+                    <button className="border border-black bg-black text-white rounded-full w-30 h-10 font-semibold hover:text-orange-400 transition-colors transition hover:-translate-y-1 transition-all duration-400">
                         <Link to="/console" className="w-full h-full flex items-center justify-center">
                             Get Started
                         </Link>
 >>>>>>> 419b378 (modified Home.jsx)
                     </button>
 
-                    <button className="border border-black bg-black text-white rounded-full w-30 h-10 font-semibold hover:text-blue-500 transition-colors">
+                    <button className="border border-black bg-black text-white rounded-full w-30 h-10 font-semibold hover:text-blue-500 transition-colors transition hover:-translate-y-1 transition-all duration-400">
                         <Link to="/demo" className="w-full h-full flex items-center justify-center">
                             View Demo
                         </Link>
