@@ -5,8 +5,10 @@ import { FileIcon, FilePlusCorner, FolderIcon, Send } from "lucide-react";
 import {  useRef, useState } from "react"
 import { CgFileAdd } from "react-icons/cg";
 import { Generate } from "../../services/backend/generate";
-const Wireframe = ({WireframePrompt,setEditorValue,isHidden,TLeditorRef}) => {
+const Wireframe = ({WireframePrompt,setEditorValue,isHidden,TLeditorRef,isGenerating,setisGenerating}) => {
   const [text, settext] = useState(WireframePrompt.current)
+
+  //? Sends genration request to the server
   async function handleGenerate(){
     const shapes = TLeditorRef.current.getCurrentPageShapeIds();
     if(shapes.size === 0){
@@ -19,7 +21,9 @@ const Wireframe = ({WireframePrompt,setEditorValue,isHidden,TLeditorRef}) => {
     })
     
     try {
+      setisGenerating(true)
       await Generate(blob,text,setEditorValue)
+      setisGenerating(false)
     } catch (error) {
       console.log(error)
     }
@@ -28,7 +32,7 @@ const Wireframe = ({WireframePrompt,setEditorValue,isHidden,TLeditorRef}) => {
   return (
     <div className={`w-full h-full ${isHidden?"hidden":"flex"} flex-col items-center justify-between px-10 py-5`}>
       <div className=" w-full h-full rounded-2xl py-10 relative z-0">
-        <Tldraw className="rounded-2xl" persistenceKey="DefaultKeyForNow" autoFocus={false} onMount={(e)=>{
+        <Tldraw className="rounded-2xl" persistenceKey="DefaultKeyForNow"  onMount={(e)=>{
           TLeditorRef.current = e;
         }}/>
       </div>
@@ -44,7 +48,7 @@ const Wireframe = ({WireframePrompt,setEditorValue,isHidden,TLeditorRef}) => {
               e.target.style.height = "auto";
               e.target.style.height = `${Math.min(e.target.scrollHeight, 100)}px`
             }} id="" placeholder="Describe Your Design(Optional)"></textarea>
-            <motion.button onClick={handleGenerate} whileHover={{scale:1.1}} whileTap={{scale:0.8}} className="bg-blue-400 p-1 rounded-md hover:cursor-pointer"><Send fill="white"/></motion.button>
+            <motion.button onClick={handleGenerate} disabled={isGenerating} whileHover={{scale:1.1}} whileTap={{scale:0.8}} className = {`bg-blue-400 p-1 rounded-md ${isGenerating ? "hover:cursor-not-allowed opacity-50" : "hover:cursor-pointer "}`}><Send fill="white"/></motion.button>
         </div>
       </div>
     </div>

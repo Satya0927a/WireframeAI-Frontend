@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { Edit } from "../../services/backend/generate";
 
-const Preview = ({ EditPrompt, setEditorValue,EditorValue,isHidden ,iframe}) => {
+const Preview = ({ EditPrompt, setEditorValue,EditorValue,isHidden ,iframe,isGenerating,setisGenerating}) => {
 
   return (
     <div className={`w-full h-full ${isHidden?"hidden":"flex"} flex-col items-center justify-between px-10 py-5`}>
@@ -29,7 +29,7 @@ const Preview = ({ EditPrompt, setEditorValue,EditorValue,isHidden ,iframe}) => 
             }
           }}
           style={{
-            "--sp-layout-height": "650px",
+            "--sp-layout-height": "550px",
           }}
         >
           <SandpackLayout className="h-full"
@@ -38,24 +38,24 @@ const Preview = ({ EditPrompt, setEditorValue,EditorValue,isHidden ,iframe}) => 
           </SandpackLayout>
         </SandpackProvider>
       </div>
-      <GenerateInput Current_code={EditorValue} setEditorValue={setEditorValue}/>
+      <GenerateInput Current_code={EditorValue} setEditorValue={setEditorValue} setisGenerating={setisGenerating} isGenerating={isGenerating}/>
     </div>
   )
 }
 
 
-const GenerateInput = ({Current_code,setEditorValue}) => {
+const GenerateInput = ({Current_code,setEditorValue,isGenerating,setisGenerating}) => {
   const [editDetails, setEditDetails] = useState("")
-  
+  //?sends Edit request to the server
   async function handleReqSendEdit() {
-    console.log(editDetails,Current_code);
-    
     if(!editDetails || !Current_code){
       alert("Edit description or Code invalid")
       return
     }
     try {
+      setisGenerating(true)
       const data = await Edit(Current_code,editDetails)
+      setisGenerating(false)
       setEditorValue(data)
       setEditDetails("")
     } catch (error) {
@@ -92,15 +92,16 @@ const GenerateInput = ({Current_code,setEditorValue}) => {
           placeholder="Edit your component quickly..."
           onChange={(e)=>{setEditDetails(e.target.value)}}
           value={editDetails}
-          className="w-full bg-transparent text-white placeholder-gray-500 text-lg outline-none font-medium"
+          className={`w-full bg-transparent text-white placeholder-gray-500 text-lg outline-none font-medium `}
         />
         
         {/* Generate Button */}
         <motion.button
           onClick={handleReqSendEdit}
+          disabled={isGenerating}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors"
+          className={`flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors ${isGenerating ? "hover:cursor-not-allowed opacity-50" : "hover:cursor-pointer"}`}
         >
           <svg 
             width="20" 

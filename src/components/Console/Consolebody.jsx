@@ -6,6 +6,7 @@ import Preview from "./preview"
 import Wireframe from "./wireframe"
 import AIModelSelector from "./modelDropdownbtn"
 import { TldrawEditor } from "tldraw"
+import EditorLoadingScreen from "./EditorLoading"
 
 const DefaultEditorValue = `
 //The generated code will show here
@@ -33,6 +34,8 @@ const ConsoleBody = ({ theme }) => {
   const [leftwidth, setleftwidth] = useState(50)
   const [EditorValue, setEditorValue] = useState(DefaultEditorValue)
   const [leftwindowMode, setleftwinndowMode] = useState(0)
+  const [isGenerating,setisGenerating] = useState(false)
+  const [isEditing,setisEditing] = useState(false)
   const WireframePrompt = useRef("");
   const EditPrompt = useRef("");
   const TLeditorRef = useRef(null) //the editor instance 
@@ -60,6 +63,7 @@ const ConsoleBody = ({ theme }) => {
     }
   };
   function handleMonacoOnMount(editor){
+    //these are event listeners
     editor.onDidFocusEditorText(() => {
       TLeditorRef.current.blur()
     });
@@ -82,12 +86,14 @@ const ConsoleBody = ({ theme }) => {
           </div>
         </div>
         <div className=" w-full h-full">
-          <Preview iframe={iframe} EditPrompt={EditPrompt} setEditorValue={setEditorValue} EditorValue={EditorValue} isHidden={leftwindowMode == 1 ? true : false} />
-          <Wireframe WireframePrompt={WireframePrompt} setEditorValue={setEditorValue} isHidden={leftwindowMode == 1 ? false : true} TLeditorRef={TLeditorRef} />
+          <Preview iframe={iframe} EditPrompt={EditPrompt} setEditorValue={setEditorValue} EditorValue={EditorValue} isHidden={leftwindowMode == 1 ? true : false} isGenerating={isGenerating} setisGenerating={setisGenerating} />
+          <Wireframe WireframePrompt={WireframePrompt} setEditorValue={setEditorValue} isHidden={leftwindowMode == 1 ? false : true} TLeditorRef={TLeditorRef} isGenerating={isGenerating} setisGenerating={setisGenerating} />
         </div>
       </div>
-      <div onMouseDown={(e) => { e.preventDefault(); handleMouseDown() }} className="h-screen w-2 cursor-col-resize"></div>
-      <div className="bg-[#1E1E1E] h-screen rounded-3xl overflow-hidden flex-1 min-w-0 flex flex-col " >
+      {/* dragger  */}
+      <div onMouseDown={(e) => { e.preventDefault(); handleMouseDown() }} className="h-screen w-2 cursor-col-resize hover:bg-blue-400"></div>
+      <div className="bg-[#1E1E1E] h-screen rounded-3xl overflow-hidden flex-1 min-w-0 flex flex-col relative" >
+        {isGenerating && <EditorLoadingScreen/>}
         <div className="py-5 px-6 flex gap-2 items-center">
           <div className="bg-(--bg-light) p-1 dark:border-t dark:border-(--highlight) rounded-md">
             <Code2 size={20} color="black" className="dark:invert" />

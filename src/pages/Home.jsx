@@ -214,9 +214,9 @@ export default function StellarHero() {
         <header className="relative w-full overflow-hidden">
           
           {/* Dotgrid Background wrapper: trapped inside the header context */}
-          <div className="absolute inset-0 z-0 pointer-events-none">
+          {/* <div className="absolute inset-0 z-0 pointer-events-none">
             <Dotgrid />
-          </div>
+          </div> */}
 
           {/* Hero Content (Pushed visually above Dotgrid using z-10) */}
           <div className="relative z-10 max-w-6xl mx-auto px-6 pt-24 pb-28 text-center ">
@@ -248,7 +248,7 @@ export default function StellarHero() {
 
             {/* CTA Button */}
             <div className={`${animateUp} [animation-delay:0.5s] mb-14`}>
-              <button className="bg-black hover:bg-gray-800 text-white rounded-full px-8 py-3 text-base font-medium transition-colors shadow-md">
+              <button onClick={()=>{console.log("HEEEE")}}  className="bg-black hover:bg-gray-800 text-white rounded-full px-8 py-3 text-base font-medium transition-colors shadow-md">
                 Begin Free Trial
               </button>
             </div>
