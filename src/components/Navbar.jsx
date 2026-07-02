@@ -28,7 +28,7 @@ function Navbar() {
           </Link>
 
           <Link
-            to="/solutions"
+            to="/Blog"
             className="flex items-center gap-1 text-sm text-gray-600 hover:text-black transition hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
           >
             Blog
