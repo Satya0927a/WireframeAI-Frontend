@@ -14,6 +14,7 @@ import Tryit from "./components/Tryit";
 import Test from "./pages/Testhome";
 import Demo from "./pages/Viewdemo";
 import Precision from "./components/Features";
+import Blog from "./pages/Blog";
 
 function App() {
 
@@ -56,6 +57,8 @@ function App() {
         <Route path="/demo" element={<Demo />} />
 
         <Route path="/precision" element={<Precision />} />
+
+        <Route path="/blog" element={<Blog />} />
 
 
 
