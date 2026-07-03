@@ -1,9 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { Star, ChevronDown, BarChart3, BookOpen, Users, Rocket } from "lucide-react";
-import Console from "./Console";
-import Demo from "./Viewdemo";
 import Console from "./Console";
 import Demo from "./Viewdemo";
 import Wire from "../assets/wire.mp4";
@@ -20,30 +17,10 @@ function App() {
     return (
         <section className="relative min-h-screen w-full bg-white overflow-hidden">
             <Navbar />
-import Tryit from "../components/Tryit";
-import Precision from "../components/Features";
-// import Dotgrid from "../components/Dotgrid";
-
-function App() {
-    return (
-        <section className="relative min-h-screen w-full bg-white overflow-hidden">
-            <Navbar />
-
-            {/* <Dotgrid /> */}
 
             {/* <Dotgrid /> */}
 
 
-            {/* HERO CONTENT CONTAINER */}
-            <div className=" max-w-6xl mx-auto w-full px-6">
-                
-                {/* Trust Badge */}
-                <div className="flex justify-center mt-35 relative z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full shadow-sm">
-                        <Star className="w-3 h-3 fill-black stroke-none" />
-                        <span className="text-xs font-medium text-gray-700">4.9 rating from 18.3K+ users</span>
-                    </div>
-                </div>
             {/* HERO CONTENT CONTAINER */}
             <div className=" max-w-6xl mx-auto w-full px-6">
                 
@@ -64,20 +41,7 @@ function App() {
                             Production Code
                         </span>
                     </h1>
-                {/* Heading */}
-                <div className="flex flex-col items-center text-center mt-6 relative z-10">
-                    <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[0.95] text-black">
-                        Turn Components into
-                        <br />
-                        <span className="bg-gradient-to-r from-black via-blue-500 to-blue-400 bg-clip-text text-transparent mt-50">
-                            Production Code
-                        </span>
-                    </h1>
 
-                    <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mt-5">
-                        Generate quick react components for your website using our wireframe to react components generator powered by AI.
-                    </p>
-                </div>
                     <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mt-5">
                         Generate quick react components for your website using our wireframe to react components generator powered by AI.
                     </p>
@@ -95,20 +59,7 @@ function App() {
                         <Link to="/demo" className="w-full h-full flex items-center justify-center">
                             View Demo
                         </Link>
-                {/* Buttons */}
-                <div className="mt-15 flex justify-center gap-10 relative z-10">
-                    <button className="border border-black bg-black text-white rounded-2xl w-35 h-12 font-medium hover:text-orange-400 transition-colors transition hover:-translate-y-1 transition-all duration-400">
-                        <Link to="/console" className="w-full h-full flex items-center justify-center">
-                            Get Started
-                        </Link>
                     </button>
-
-                    <button className="border border-black bg-black text-white rounded-2xl w-35 h-12 font-medium hover:text-blue-500 transition-colors transition hover:-translate-y-1 transition-all duration-400">
-                        <Link to="/demo" className="w-full h-full flex items-center justify-center">
-                            View Demo
-                        </Link>
-                    </button>
-                </div>
                 </div>
             </div>
 
@@ -123,20 +74,7 @@ function App() {
                     className="w-full h-auto object-cover scale-110"
                 />
             </div>
-            {/* Video */}
-            <div className="relative z-10 max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-200 mt-24 mb-20 px-4 sm:px-0">
-                <video 
-                    src={Wire}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-auto object-cover scale-110"
-                />
-            </div>
 
-             {/* MARQUEE BRAND SECTION */}
-              <div>
              {/* MARQUEE BRAND SECTION */}
               <div>
                 <div className="mt-20 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 select-none opacity-50">
