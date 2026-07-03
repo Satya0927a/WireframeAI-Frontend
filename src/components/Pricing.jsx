@@ -1,3 +1,5 @@
+import Arrow from "../assets/arrow.png";
+
 function Pricing() {
   const plans = [
     {
@@ -80,12 +82,11 @@ function Pricing() {
                 {plan.desc}
               </p>
 
-             <button className="w-full cursor-pointer hover:opacity-95 active:scale-[0.98] border border-slate-200 flex items-center justify-between pl-6 h-14 pr-1 rounded-full bg-gradient-to-r from-slate-800 to-slate-900 text-white font-semibold text-[16px] transition-all shadow-sm shadow-slate-900/10">             Get started             <span className="bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-sm">
-              {/* Clean inline SVG Arrow */}
-              <svg className="w-4 h-4 text-slate-900 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>             
+             <button className="w-full cursor-pointer hover:opacity-95 active:scale-[0.98] border border-slate-200 flex items-center justify-between pl-6 h-14 pr-1 rounded-full bg-gradient-to-r from-slate-800 to-slate-900 text-white font-semibold text-[16px] transition-all shadow-sm shadow-slate-900/10"> Get started <span className="bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-sm">
+              {/* SVG Arrow */}
+             <img src={Arrow} 
+             className="w-10 h-10 font-bold"
+             alt="Arrow" />           
               </span>
          </button>
 

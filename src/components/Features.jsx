@@ -105,7 +105,7 @@ const PILLARS = [
             </span>
           </h2>
           <p style={{ fontSize: 'clamp(15px, 1.2vw, 20px)', color: 'rgb(169, 151, 206)', margin: 0 }}>
-            WireAI transforms your wireframes into clean, typed React components — ready to ship in minutes, not days.
+            WireframeAI transforms your wireframes into clean, typed React components — ready to ship in minutes, not days.
           </p>
         </div>
       </div>

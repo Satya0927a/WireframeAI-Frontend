@@ -25,7 +25,7 @@ function App() {
             <div className=" max-w-6xl mx-auto w-full px-6">
                 
                 {/* Trust Badge */}
-                <div className="flex justify-center mt-22 relative z-10">
+                <div className="flex justify-center mt-35 relative z-10">
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full shadow-sm">
                         <Star className="w-3 h-3 fill-black stroke-none" />
                         <span className="text-xs font-medium text-gray-700">4.9 rating from 18.3K+ users</span>
