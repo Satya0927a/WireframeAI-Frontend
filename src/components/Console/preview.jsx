@@ -1,11 +1,10 @@
 import { Sandpack, SandpackProvider, SandpackPreview, SandpackLayout } from "@codesandbox/sandpack-react";
-import axios from "axios";
 import { Send } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { Edit } from "../../services/backend/generate";
 
-const Preview = ({ EditPrompt, setEditorValue,EditorValue,isHidden ,iframe,isGenerating,setisGenerating}) => {
+const Preview = ({ setEditorValue,EditorValue,isHidden ,iframe,isGenerating,setisGenerating}) => {
 
   return (
     <div className={`w-full h-full ${isHidden?"hidden":"flex"} flex-col items-center justify-between px-10 py-5`}>
@@ -68,7 +67,7 @@ const GenerateInput = ({Current_code,setEditorValue,isGenerating,setisGenerating
     <div className="relative p-1 rounded-2xl w-full max-w-2xl mx-auto ">
       {/* Animated Rainbow Glow Background */}
       <motion.div
-        className="absolute -inset-[2px] rounded-2xl opacity-75 blur-lg"
+        className="absolute -inset-0.5 rounded-2xl opacity-75 blur-lg"
         animate={{
           background: [
             "linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000)",

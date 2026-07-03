@@ -30,7 +30,7 @@ export default function AIModelSelector() {
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg dark:border-1 dark:border-(--border) dark:border-t-2 dark:border-t-(--highlight) bg-(--bg) text-(--text-muted) hover:text-(--text) backdrop-blur-md shadow-sm hover:bg-(--bg-light) active:scale-98 transition-all duration-150 focus:outline-none"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-lg dark:border dark:border-(--border) dark:border-t-2 dark:border-t-(--highlight) bg-(--bg) text-(--text-muted) hover:text-(--text) backdrop-blur-md shadow-sm hover:bg-(--bg-light) active:scale-98 transition-all duration-150 focus:outline-none"
       >
         {/* Dropdown Chevron Icon */}
         <motion.span
@@ -67,7 +67,7 @@ export default function AIModelSelector() {
             animate={{ opacity: 1, y: 4, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.95 }}
             transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-0 mt-1 w-72 origin-top-left rounded-xl dark:border-1 dark:border-(--border) dark:border-t-2 dark:border-t-(--highlight) bg-(--bg) p-1.5 shadow-xl ring-1 ring-black/5 z-50 focus:outline-none"
+            className="absolute left-0 mt-1 w-72 origin-top-left rounded-xl dark:border dark:border-(--border) dark:border-t-2 dark:border-t-(--highlight) bg-(--bg) p-1.5 shadow-xl ring-1 ring-black/5 z-50 focus:outline-none"
           >
             <div className="flex flex-col gap-1">
               {models.map((model) => {

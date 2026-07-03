@@ -33,13 +33,14 @@ let debugcounter = 0;
 const ConsoleBody = ({ theme }) => {
   const [leftwidth, setleftwidth] = useState(50)
   const [EditorValue, setEditorValue] = useState(DefaultEditorValue)
+  console.log(EditorValue);
   const [leftwindowMode, setleftwinndowMode] = useState(0)
   const [isGenerating,setisGenerating] = useState(false)
   const [isEditing,setisEditing] = useState(false)
   const WireframePrompt = useRef("");
   const EditPrompt = useRef("");
   const TLeditorRef = useRef(null) //the editor instance 
-  console.log(debugcounter++)
+  // console.log(debugcounter++)
   const iframe = useRef(null)
 
   const handleMouseDown = () => {

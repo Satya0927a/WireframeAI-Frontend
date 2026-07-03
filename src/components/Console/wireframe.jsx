@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import 'tldraw/tldraw.css'
 import { Tldraw} from "tldraw";
 import { FileIcon, FilePlusCorner, FolderIcon, Send } from "lucide-react";
-import {  useRef, useState } from "react"
+import { useState } from "react"
 import { CgFileAdd } from "react-icons/cg";
 import { Generate } from "../../services/backend/generate";
 const Wireframe = ({WireframePrompt,setEditorValue,isHidden,TLeditorRef,isGenerating,setisGenerating}) => {
