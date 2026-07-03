@@ -22,7 +22,7 @@ const CTA = () => {
 
           <button className="mt-10 flex items-center gap-2 rounded-xl bg-blue-500 px-8 py-4 text-white font-semibold shadow-lg shadow-blue-300 transition hover:bg-blue-600 hover:scale-105">
             <Link
-            to="/login"
+            to="/signup"
             >
                 Try WireframeAI
             </Link>

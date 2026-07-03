@@ -64,16 +64,16 @@ function Navbar() {
 
           <Link
             to="/login"
-            className="text-sm text-gray-600 hover:text-black transition hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+            className="text-sm font-bold text-gray-600 hover:text-black transition hover:-translate-y-0.5 transition-all duration-400 cursor-pointer"
           >
             Login
           </Link>
 
           <Link
             to="/signup"
-            className="bg-black text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition cursor-pointer"
+            className="bg-black font-bold text-white px-5 py-2 rounded-3xl text-sm font-medium hover:bg-gray-800 transition cursor-pointer transition hover:-translate-y-1 transition-all duration-400"
           >
-            Get Started Free
+            Sign Up
           </Link>
 
         </div>
