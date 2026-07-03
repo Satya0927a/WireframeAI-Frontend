@@ -9,8 +9,8 @@ const Sidebar = ({theme,settheme}) => {
     theme == "dark"?settheme("light"):settheme("dark")
   }
   return (
-    <div className=" bg-(--bg-dark) border-r-1 border-(--border) flex flex-col w-15 py-5 h-screen justify-between items-center">
-      <div className="flex flex-col gap-5 *:bg-(--bg)   dark:*:border-t-1 dark:*:border-t-(--highlight) dark:*:border-(--border)  *:shadow-(--shadow-btn) *:rounded-full  *:h-10 *:w-10 *:flex *:justify-center *:items-center">
+    <div className=" bg-(--bg-dark) border-r border-(--border) flex flex-col w-15 py-5 h-screen justify-between items-center">
+      <div className="flex flex-col gap-5 *:bg-(--bg)   dark:*:border-t dark:*:border-t-(--highlight) dark:*:border-(--border)  *:shadow-(--shadow-btn) *:rounded-full  *:h-10 *:w-10 *:flex *:justify-center *:items-center">
         <motion.button whileHover={{scale:1.1}} whileTap={{scale:0.9}} className="cursor-pointer">
           <LeafIcon className="dark:invert"/>
         </motion.button>
@@ -31,7 +31,7 @@ const Sidebar = ({theme,settheme}) => {
           <CgDarkMode className="dark:invert"/>
         </motion.button>
       </div>
-      <div className="flex flex-col gap-5 *:bg-(--bg) dark:*:border-t-1 dark:*:border-(--highlight) *:shadow-(--shadow-btn)  *:rounded-full *:h-10 *:w-10 *:flex *:justify-center *:items-center">
+      <div className="flex flex-col gap-5 *:bg-(--bg) dark:*:border-t dark:*:border-(--highlight) *:shadow-(--shadow-btn)  *:rounded-full *:h-10 *:w-10 *:flex *:justify-center *:items-center">
 
         <motion.button whileHover={{scale:1.1}} whileTap={{scale:0.9}} className="cursor-pointer">
           <Settings className="dark:invert"/>
