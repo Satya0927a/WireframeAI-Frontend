@@ -5,7 +5,7 @@ const CTA = () => {
   return (
     <section className="py-15 px-6">
       <div className="max-w-5xl mx-auto border border-blue-200 rounded-3xl bg-white shadow-[0_0_70px_rgba(249,115,22,0.12)]">
-        <div className="flex flex-col items-center text-center px-8 py-20">
+        <div className="flex flex-col items-center text-center px-5 py-8">
 
           <h2 className="text-4xl md:text-6xl font-bold leading-tight text-gray-900">
             Start Turning Wireframes into
