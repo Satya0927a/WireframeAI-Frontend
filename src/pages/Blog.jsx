@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 // Expanded blog data with full article markdown text
 const BLOG_POSTS = [
@@ -131,20 +133,9 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 antialiased font-sans">
       {/* Navigation Bar */}
-      <nav className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-md">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <span className="text-xl font-bold tracking-tight text-indigo-600">DevJournal.</span>
-            <div className="flex space-x-6 text-sm font-medium text-slate-600">
-              <a href="#" className="hover:text-indigo-600 transition">Articles</a>
-              <a href="#" className="hover:text-indigo-600 transition">Newsletter</a>
-              <a href="#" className="hover:text-indigo-600 transition">About</a>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
-      <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 mt-15">
         {/* Header Section */}
         <div className="mb-12 text-center md:text-left">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Perspectives & Insights</h1>
@@ -330,9 +321,7 @@ export default function BlogPage() {
         </div>
       )}
 
-      <footer className="mt-24 border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-400">
-        <p>© 2026 DevJournal. Built with React and Tailwind CSS.</p>
-      </footer>
+     <Footer />
     </div>
   );
 }
