@@ -15,6 +15,7 @@ import Test from "./pages/Testhome";
 import Demo from "./pages/Viewdemo";
 import Precision from "./components/Features";
 import Blog from "./pages/Blog";
+import DashboardPage from './pages/Dashboard';
 
 function App() {
 
@@ -43,6 +44,9 @@ function App() {
 
         {/* Console  */}
         <Route path="/console" element={<Console />} />
+
+        {/* Dashboard  */}
+        <Route path="/dashboard" element={<DashboardPage />} />
 
         {/* Forgot Password */}
         <Route path="/forgot-password" element={<ForgotP />} />

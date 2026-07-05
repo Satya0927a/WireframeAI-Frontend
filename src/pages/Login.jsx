@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "motion/react";
 import Back from "../assets/back.png";
 import Google from "../assets/google.png";
 
@@ -64,12 +65,14 @@ function Login() {
         </div>
 
         {/* Login Button */}
-        <button
+        <motion.button
+          whileHover={{scale:1.025}}
+          whileTap={{scale:0.975}}
           type="button"
-          className="w-full h-16 bg-[#FF9B51] rounded-full mt-6 text-black text-2xl font-bold font-serif hover:scale-105 transition-all cursor-pointer"
+          className="w-full h-16 bg-[#FF9B51] rounded-full mt-6 text-black text-2xl font-bold font-serif  cursor-pointer"
         >
           Login
-        </button>
+        </motion.button>
 
         {/* Divider */}
         <div className="flex items-center gap-3 mt-6">
