@@ -1,16 +1,35 @@
 import { useState } from "react"
 import { LayoutDashboard, Settings, Moon, Sun, HelpCircle, LogOut, ChevronUp, User } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
+import useAuth from "../../context/Hooks/AuthHook"
+import { LogOutReq } from "../../services/backend/auth"
+import { useNavigate } from "react-router-dom"
 
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", active: true },
 ]
 
 const Sidebar = ({ theme, settheme }) => {
+  const navigate = useNavigate()
   const [showUserMenu, setShowUserMenu] = useState(false)
+  const {user,setuser} = useAuth()
 
   const handleDarkmode = () => {
     theme == "dark" ? settheme("light") : settheme("dark")
+  }
+
+  async function handleLogout() {
+    try {
+      const data = await LogOutReq()
+      if(data.success){
+        setuser(null)
+        navigate('/')
+      }
+    } catch (error) {
+      const data = error.response?.data
+      data?console.log(data):null;
+    }
+    
   }
 
   return (
@@ -64,7 +83,7 @@ const Sidebar = ({ theme, settheme }) => {
             <div className="w-7 h-7 rounded-md bg-(--bg-light) dark:border dark:border-(--border) flex items-center justify-center">
               <User size={14} className="dark:invert" />
             </div>
-            <span className="flex-1 text-left text-(--text)">Satya</span>
+            <span className="flex-1 text-left text-(--text)">{user.name}</span>
             <ChevronUp size={14} className={`transition-transform ${showUserMenu ? "rotate-180" : ""}`} />
           </button>
 
@@ -80,7 +99,10 @@ const Sidebar = ({ theme, settheme }) => {
                   <User size={16} />
                   <span>Account</span>
                 </button>
-                <button className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-red-400 hover:bg-red-500/10 transition-colors cursor-pointer">
+                <button className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-red-400 
+                hover:bg-red-500/10 transition-colors cursor-pointer"
+                onClick={handleLogout}
+                >
                   <LogOut size={16} />
                   <span>Logout</span>
                 </button>

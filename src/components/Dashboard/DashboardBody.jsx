@@ -3,14 +3,8 @@ import { motion, AnimatePresence } from "motion/react"
 import { Plus, Sparkles } from "lucide-react"
 import WorkspaceCard from "./WorkspaceCard"
 import CreateWorkspaceModal from "./CreateWorkspaceModal"
+import useAuth from "../../context/Hooks/AuthHook"
 
-const greetings = [
-  "Back in action, Satya",
-  "Ready to build something great, Satya?",
-  "Satya — your wireframes are waiting",
-  "Good to see you, Satya",
-  "Let's make some magic, Satya",
-]
 
 const subtitles = [
   "What are we building today?",
@@ -28,10 +22,10 @@ const dummyWorkspaces = [
 ]
 
 const DashboardBody = () => {
+  const {user} = useAuth()
   const [workspaces, setWorkspaces] = useState(dummyWorkspaces)
   const [showModal, setShowModal] = useState(false)
   const [deleteTarget, setDeleteTarget] = useState(null)
-  const greeting = useMemo(() => greetings[Math.floor(Math.random() * greetings.length)], [])
   const subtitle = useMemo(() => subtitles[Math.floor(Math.random() * subtitles.length)], [])
 
   const handleDelete = (id) => {
@@ -59,7 +53,7 @@ const DashboardBody = () => {
         {/* Header */}
         <div className="mb-14 mt-6">
           <div className="flex items-center gap-4 mb-3">
-            <h1 className="text-(--text) text-5xl font-bold tracking-tight">{greeting}</h1>
+            <h1 className="text-(--text) text-5xl font-bold tracking-tight">Good to see you, {user.name}</h1>
             <Sparkles className="dark:invert text-(--text-muted)" size={32} />
           </div>
           <p className="text-(--text-muted) text-lg">{subtitle}</p>
