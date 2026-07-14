@@ -16,6 +16,7 @@ import Demo from "./pages/Viewdemo";
 import Precision from "./components/Features";
 import Blog from "./pages/Blog";
 import DashboardPage from './pages/Dashboard';
+import Support from "./pages/Support";
 import Protected from './components/Auth/Protected';
 
 function App() {
@@ -64,6 +65,13 @@ function App() {
         <Route path="/precision" element={<Precision />} />
 
         <Route path="/blog" element={<Blog />} />
+
+        <Route path="/support" element={<Support />} />
+
+
+
+
+
 
       </Routes>
 

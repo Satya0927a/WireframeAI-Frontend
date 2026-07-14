@@ -1,113 +1,199 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
-import { Star, ChevronDown, BarChart3, BookOpen, Users, Rocket } from "lucide-react";
-import Console from "./Console";
-import Demo from "./Viewdemo";
-import Wire from "../assets/wire.mp4";
-import Navbar from "../components/Navbar";
-import Say from "../components/Testimonial"
-import Pricing from "../components/Pricing";
-import FAQ from "../components/FAQ";
-import Footer from "../components/Footer";
-import Tryit from "../components/Tryit";
-import Precision from "../components/Features";
-import Dotgrid from "../components/Dotgrid";
+import React, { useState } from 'react';
+import { User, Lock, Mail } from 'lucide-react';
 
-function App() {
-    return (
-        <section className="relative min-h-screen w-full bg-white overflow-hidden">
-            <Navbar />
+export default function AuthForm() {
+  // Tracking your active class flag natively with React state
+  const [isActive, setIsActive] = useState(false);
 
-            <Dotgrid />
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
-
-            {/* HERO CONTENT CONTAINER */}
-            <div className=" max-w-6xl mx-auto w-full px-6">
-                
-                {/* Trust Badge */}
-                <div className="flex justify-center mt-22 relative z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full shadow-sm">
-                        <Star className="w-3 h-3 fill-black stroke-none" />
-                        <span className="text-xs font-medium text-gray-700">4.9 rating from 18.3K+ users</span>
-                    </div>
-                </div>
-
-                {/* Heading */}
-                <div className="flex flex-col items-center text-center mt-6 relative z-10">
-                    <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[0.95] text-black">
-                        Turn Components into
-                        <br />
-                        <span className="bg-gradient-to-r from-black via-blue-500 to-blue-400 bg-clip-text text-transparent mt-50">
-                            Production Code
-                        </span>
-                    </h1>
-
-                    <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mt-5">
-                        Generate quick react components for your website using our wireframe to react components generator powered by AI.
-                    </p>
-                </div>
-
-                {/* Buttons */}
-                <div className="mt-15 flex justify-center gap-10 relative z-10">
-                    <button className="border border-black bg-black text-white rounded-full w-30 h-10 font-semibold hover:text-orange-400 transition-colors">
-                        <Link to="/console" className="w-full h-full flex items-center justify-center">
-                            Get Started
-                        </Link>
-                    </button>
-
-                    <button className="border border-black bg-black text-white rounded-full w-30 h-10 font-semibold hover:text-blue-500 transition-colors">
-                        <Link to="/demo" className="w-full h-full flex items-center justify-center">
-                            View Demo
-                        </Link>
-                    </button>
-                </div>
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] font-['Poppins'] text-slate-800 antialiased p-4">
+      
+      {/* 
+        .container 
+        Tracks your custom 850x550 desktop bounds & switches to full screen responsive constraints 
+      */}
+      <div className={`relative w-full max-w-[850px] h-[550px] bg-white max-sm:h-[calc(100vh-40px)] rounded-[30px] shadow-[0_0_30px_rgba(0,0,0,0.2)] overflow-hidden m-5 transition-all duration-300`}>
+        
+        {/* =========================================================================
+            1. LOGIN FORM PANEL
+           ========================================================================= */}
+        <div 
+          className={`absolute right-0 w-1/2 h-full bg-white flex items-center text-center p-10 max-sm:p-5 max-sm:bottom-0 max-sm:w-full max-sm:height-[70%] z-[1] transition-all duration-[600ms] ease-in-out delay-[1200ms] max-sm:delay-0
+            ${isActive 
+              ? 'right-1/2 max-sm:right-0 max-sm:bottom-[30%]' 
+              : 'right-0'
+            }`}
+        >
+          <form onSubmit={handleSubmit} className="w-full max-w-[320px] mx-auto flex flex-col items-center">
+            <h1 className="text-[36px] font-bold text-[#333] tracking-tight mb-2 -mt-2">Login</h1>
+            
+            <div className="relative w-full my-[30px]">
+              <input 
+                type="text" 
+                placeholder="Username" 
+                required 
+                className="w-full py-[13px] pl-5 pr-[50px] bg-[#eee] rounded-handle rounded-lg border-none outline-none text-base text-[#333] font-medium placeholder-[#888] font-normal"
+              />
+              <User className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
             </div>
 
-            {/* Video */}
-            <div className="relative z-10 max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-200 mt-24 mb-20 px-4 sm:px-0">
-                <video 
-                    src={Wire}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-auto object-cover scale-110"
-                />
+            <div className="relative w-full mb-[15px]">
+              <input 
+                type="password" 
+                placeholder="Password" 
+                required 
+                className="w-full py-[13px] pl-5 pr-[50px] bg-[#eee] rounded-lg border-none outline-none text-base text-[#333] font-medium placeholder-[#888] font-normal"
+              />
+              <Lock className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
             </div>
 
-             {/* MARQUEE BRAND SECTION */}
-              <div>
-                <div className="mt-20 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 select-none opacity-50">
-                  <span className="text-xs font-bold tracking-[0.15em] uppercase text-gray-800">Interscope</span>
-                  <span className="text-xs font-bold tracking-[0.12em] uppercase text-gray-800">Spotify</span>
-                  <span className="flex items-center gap-1.5 text-xs font-medium text-gray-800">
-                    <span className="grid grid-cols-2 gap-0.5">
-                      {[...Array(4)].map((_, i) => <span key={i} className="w-1 h-1 rounded-full bg-gray-700 block" />)}
-                    </span>
-                    Nexera
-                  </span>
-                  <span className="text-sm font-bold text-gray-800 font-serif italic">M3</span>
-                  <span className="flex items-center gap-1.5 text-xs font-medium tracking-wide uppercase text-gray-800">
-                    <span className="w-4 h-4 rounded-full border border-gray-400 flex items-center justify-center text-[8px] font-bold">LC</span>
-                    Laura Cole
-                  </span>
-                  <span className="flex items-center gap-1 text-xs font-medium text-gray-800">
-                    vertex
-                    {[...Array(3)].map((_, i) => <span key={i} className="w-[3px] h-[3px] rounded-full bg-gray-400 inline-block ml-0.5" />)}
-                  </span>
-                </div>
-              </div>
+            <div className="w-full text-right -mt-1 mb-[15px]">
+              <a href="#" className="text-[14.5px] text-[#333] hover:underline">Forgot Password?</a>
+            </div>
 
+            <button type="submit" className="w-full h-12 bg-[#7494ec] rounded-lg shadow-[0_0_10px_rgba(0,0,0,0.1)] border-none text-white font-semibold text-base cursor-pointer hover:bg-[#6383db] active:scale-[0.99] transition-all">
+              Login
+            </button>
 
+            <p className="text-[14.5px] text-[#333] my-[15px]">or login with social platforms</p>
+            
+            <div className="flex justify-center">
+              <SocialButton href="#">G</SocialButton>
+              <SocialButton href="#">F</SocialButton>
+              <SocialButton href="#">Git</SocialButton>
+              <SocialButton href="#">In</SocialButton>
+            </div>
+          </form>
+        </div>
 
-               <Precision />
-      <Pricing /> 
-       <Say /> 
-       <FAQ /> 
-       <Tryit /> 
-       <Footer />
-        </section>
-    );
+        {/* =========================================================================
+            2. REGISTRATION FORM PANEL
+           ========================================================================= */}
+        <div 
+          className={`absolute right-0 w-1/2 h-full bg-white flex items-center text-center p-10 max-sm:p-5 max-sm:bottom-0 max-sm:w-full max-sm:height-[70%] z-[1] transition-all duration-[600ms] ease-in-out delay-[1200ms] max-sm:delay-0
+            ${isActive 
+              ? 'right-1/2 max-sm:right-0 max-sm:bottom-[30%] visible' 
+              : 'right-0 invisible'
+            }`}
+        >
+          <form onSubmit={handleSubmit} className="w-full max-w-[320px] mx-auto flex flex-col items-center">
+            <h1 className="text-[36px] font-bold text-[#333] tracking-tight mb-2 -mt-2 max-sm:text-[30px]">Registration</h1>
+
+            <div className="relative w-full my-[30px]">
+              <input 
+                type="text" 
+                placeholder="Username" 
+                required 
+                className="w-full py-[13px] pl-5 pr-[50px] bg-[#eee] rounded-lg border-none outline-none text-base text-[#333] font-medium placeholder-[#888] font-normal"
+              />
+              <User className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
+            </div>
+
+            <div className="relative w-full mb-[30px]">
+              <input 
+                type="email" 
+                placeholder="Email" 
+                required 
+                className="w-full py-[13px] pl-5 pr-[50px] bg-[#eee] rounded-lg border-none outline-none text-base text-[#333] font-medium placeholder-[#888] font-normal"
+              />
+              <Mail className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
+            </div>
+
+            <div className="relative w-full mb-[30px]">
+              <input 
+                type="password" 
+                placeholder="Password" 
+                required 
+                className="w-full py-[13px] pl-5 pr-[50px] bg-[#eee] rounded-lg border-none outline-none text-base text-[#333] font-medium placeholder-[#888] font-normal"
+              />
+              <Lock className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
+            </div>
+
+            <button type="submit" className="w-full h-12 bg-[#7494ec] rounded-lg shadow-[0_0_10px_rgba(0,0,0,0.1)] border-none text-white font-semibold text-base cursor-pointer hover:bg-[#6383db] active:scale-[0.99] transition-all">
+              Register
+            </button>
+
+            <p className="text-[14.5px] text-[#333] my-[15px]">or register with social platforms</p>
+
+            <div className="flex justify-center">
+              <SocialButton href="#">G</SocialButton>
+              <SocialButton href="#">F</SocialButton>
+              <SocialButton href="#">Git</SocialButton>
+              <SocialButton href="#">In</SocialButton>
+            </div>
+          </form>
+        </div>
+
+        {/* =========================================================================
+            3. TOGGLE SLIDING CANVAS BACKGROUND
+           ========================================================================= */}
+        <div className="absolute w-full h-full pointer-events-none">
+          {/* 
+            Sliding Shape Mask Layer (Equivalent to your .toggle-box::before) 
+          */}
+          <div 
+            className={`absolute h-full transition-all duration-[1800ms] ease-in-out bg-[#7494ec] z-[2]
+              ${isActive 
+                ? 'left-1/2 w-[300%] rounded-[150px] max-sm:left-0 max-sm:top-[70%] max-sm:w-full max-sm:h-[300%] max-sm:rounded-[20vw]' 
+                : 'left-[-250%] w-[300%] rounded-[150px] max-sm:left-0 max-sm:top-[-270%] max-sm:w-full max-sm:h-[300%] max-sm:rounded-[20vw]'
+              }`}
+          />
+
+          {/* LEFT PANEL OVERLAY (Triggers on Registration state) */}
+          <div 
+            className={`absolute w-1/2 max-sm:w-full h-full max-sm:h-[30%] flex flex-col justify-center items-center text-white z-[2] transition-all duration-[600ms] ease-in-out pointer-events-auto
+              ${isActive 
+                ? 'left-[-50%] delay-[600ms] max-sm:left-0 max-sm:top-[-30%]' 
+                : 'left-0 delay-[1200ms] max-sm:top-0'
+              }`}
+          >
+            <h1 className="text-[36px] font-bold tracking-tight mb-2 max-sm:text-[30px]">Hello, Welcome!</h1>
+            <p className="text-[14.5px] mb-5">Don't have an account?</p>
+            <button 
+              onClick={() => setIsActive(true)}
+              className="w-[160px] h-[46px] bg-transparent border-2 border-white rounded-lg text-white font-semibold text-base cursor-pointer tracking-wide hover:bg-white/10 active:scale-95 transition-all"
+            >
+              Register
+            </button>
+          </div>
+
+          {/* RIGHT PANEL OVERLAY (Triggers on Login state) */}
+          <div 
+            className={`absolute w-1/2 max-sm:w-full h-full max-sm:h-[30%] flex flex-col justify-center items-center text-white z-[2] transition-all duration-[600ms] ease-in-out pointer-events-auto
+              ${isActive 
+                ? 'right-0 delay-[1200ms] max-sm:bottom-0' 
+                : 'right-[-50%] delay-[600ms] max-sm:right-0 max-sm:bottom-[-30%]'
+              }`}
+          >
+            <h1 className="text-[36px] font-bold tracking-tight mb-2 max-sm:text-[30px]">Welcome Back!</h1>
+            <p className="text-[14.5px] mb-5">Already have an account?</p>
+            <button 
+              onClick={() => setIsActive(false)}
+              className="w-[160px] h-[46px] bg-transparent border-2 border-white rounded-lg text-white font-semibold text-base cursor-pointer tracking-wide hover:bg-white/10 active:scale-95 transition-all"
+            >
+              Login
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  );
 }
 
-export default App;
+// Micro UI component mapping your social link parameters
+function SocialButton({ href, children }) {
+  return (
+    <a 
+      href={href} 
+      className="inline-flex justify-center items-center w-11 h-11 border-2 border-[#ccc] rounded-lg text-2xl text-[#333] font-semibold mx-2 hover:border-[#7494ec] hover:text-[#7494ec] transition-all"
+    >
+      {children}
+    </a>
+  );
+}

@@ -238,9 +238,16 @@ export default function Footer() {
 
   <Link
     to="/privacy"
-    className="block text-sm font-semibold text-[#cbd5e1] transition-colors duration-200 hover:text-[#3b82f6]"
+    className="block text-sm font-semibold text-[#cbd5e1] mb-3 transition-colors duration-200 hover:text-[#3b82f6]"
   >
     Privacy Policy
+  </Link>
+
+   <Link
+    to="/support"
+    className="block text-sm font-semibold text-[#cbd5e1] transition-colors duration-200 hover:text-[#3b82f6]"
+  >
+    Contact Us
   </Link>
 </div>
             </div>
