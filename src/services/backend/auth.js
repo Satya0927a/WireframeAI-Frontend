@@ -18,6 +18,15 @@ async function LoginReq(email,password){
   return response.data
 }
 
+async function SignupReq(name,email,password){
+  const response = await axios.post(`${url}/auth/signup`,{
+    name:name,
+    email:email,
+    password:password
+  })
+  return response.data
+}
+
 async function OtpVerifyReq(email,otp,endpoint){
   console.log(`${url}${endpoint}`);
   
@@ -32,4 +41,4 @@ async function LogOutReq() {
   const response = await axios.post(`${url}/auth/logout`)
   return response.data
 }
-export {FetchUserData, LoginReq,OtpVerifyReq,LogOutReq}
+export {FetchUserData, LoginReq,SignupReq,OtpVerifyReq,LogOutReq}

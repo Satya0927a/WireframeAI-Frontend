@@ -1,29 +1,64 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useSearchParams } from "react-router-dom";
 import Back from "../assets/back.png";
 import { useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
+import useAuth from "../context/Hooks/AuthHook";
+import { SignupReq } from "../services/backend/auth";
+import { useState } from "react";
+import OtpVerify from "../components/Auth/OtpVerify";
 
 function Signup() {
-    const navigate = useNavigate();
+  const [searchparams] = useSearchParams()
+  const step = searchparams.get('step')
+  const email = searchparams.get('email')
+  const navigate = useNavigate();
+  const { user } = useAuth()
+  if (user) {
+    return <Navigate to={"/dashboard"} />
+  } else {
+    return (
+      <>
+      {step == 'otp' ? 
+      <OtpVerify email={email} endpoint={"/auth/signup/verify"} redirect={"/dashboard"}/> : <SignupForm navigate={navigate}/> }
+      </>
+    );
+  }
+}
+
+const SignupForm = ({navigate}) => {
+  const [name, setname] = useState("")
+  const [email, setemail] = useState("")
+  const [password, setpassword] = useState("")
+
+  async function handleSignup() {
+    try {
+      const data = await SignupReq(name, email, password)
+      if (data.success) {
+        navigate(`/signup?step=otp&email=${email}`)
+      }
+    } catch (error) {
+      const data = error.response?.data
+      data ? console.log(data) : null;
+    }
+  }
 
   return (
-    
     <div className="min-h-screen bg-gray-50 px-6 pt-8">
       {/* Back Button */}
-            <button
-              type="button"
-              onClick={() => navigate("/")}
-              className="mb-16 cursor-pointer"
-            >
-              <img
-                src={Back}
-                alt="Back"
-                className="w-10 h-10"
-              />
-            </button>
-        
+      <button
+        type="button"
+        onClick={() => navigate("/")}
+        className="mb-16 cursor-pointer"
+      >
+        <img
+          src={Back}
+          alt="Back"
+          className="w-10 h-10"
+        />
+      </button>
+
       <div className=" max-w-md mx-auto">
-        
+
         {/* Heading */}
         <div className="text-center">
           <h1 className="text-[35px] font-bold font-serif text-gray-900">
@@ -46,22 +81,31 @@ function Signup() {
           <input
             type="text"
             placeholder="Enter Name"
+            value={name ? name : ""}
+            onChange={e => setname(e.target.value)}
             className="w-full py-5 px-8 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
           />
 
           <input
             type="email"
             placeholder="Email address"
+            value={email ? email : ""}
+            onChange={e => setemail(e.target.value)}
             className="w-full py-5 px-8 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
           />
 
           <input
             type="password"
             placeholder="Password"
+            value={password ? password : ""}
+            onChange={e => setpassword(e.target.value)}
             className="w-full py-5 px-8 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
           />
 
-          <button className="w-full py-4 mt-3 rounded-full bg-[#FF9B51] border-t-2 border-white text-black text-2xl font-serif font-bold cursor-pointer">
+          <button className="w-full py-4 mt-3 rounded-full bg-[#FF9B51] border-t-2 border-white 
+          text-black text-2xl font-serif font-bold cursor-pointer"
+            onClick={handleSignup}
+          >
             Continue
           </button>
         </div>
@@ -75,39 +119,38 @@ function Signup() {
           <div className="flex-1 h-[1px] bg-gray-300"></div>
         </div>
 
-         {/* Google Login */}
-                <div className="flex justify-center mt-6">
-                  <button
-                    type="button"
-                    className="w-16 h-16 cursor-pointer bg-white border border-gray-300 rounded-2xl flex items-center justify-center hover:shadow-md transition"
-                  >
-                    <img
-                      src={Google}
-                      alt="Google"
-                      className="w-8 h-8"
-                    />
-                  </button>
-                </div>
+        {/* Google Login */}
+        <div className="flex justify-center mt-6">
+          <button
+            type="button"
+            className="w-16 h-16 cursor-pointer bg-white border border-gray-300 rounded-2xl flex items-center justify-center hover:shadow-md transition"
+          >
+            <img
+              src={Google}
+              alt="Google"
+              className="w-8 h-8"
+            />
+          </button>
+        </div>
 
-     <div className=" text-[13px] mt-30 text-center">
-  By clicking on continue you agree to recognotes <br /> our{" "}
-  <Link
-    to="/term"
-    className="text-orange-400 underline"
-  >
-    Terms of Use
-  </Link>{" "}
-  and{" "}
-  <Link
-    to="/privacy"
-    className="text-orange-400 underline"
-  >
-    Privacy Policy
-  </Link>
-</div>
+        <div className=" text-[13px] mt-30 text-center">
+          By clicking on continue you agree to recognotes <br /> our{" "}
+          <Link
+            to="/term"
+            className="text-orange-400 underline"
+          >
+            Terms of Use
+          </Link>{" "}
+          and{" "}
+          <Link
+            to="/privacy"
+            className="text-orange-400 underline"
+          >
+            Privacy Policy
+          </Link>
+        </div>
       </div>
     </div>
-  );
+  )
 }
-
 export default Signup;

@@ -44,7 +44,7 @@ const OtpVerify = ({ email, endpoint, redirect }) => {
     try {
       const data = await OtpVerifyReq(email, otp.join(""), endpoint)
       if (data.success) {
-        setuser(data)
+        setuser(data.data)
         navigate(redirect)
       }
     } catch (error) {
@@ -53,11 +53,9 @@ const OtpVerify = ({ email, endpoint, redirect }) => {
         const action = data.action
         if (action == "REDIRECTBACK") {
           navigate("/login")
-          console.log(data);
         }
         else if (action == "ERROR") {
           setotp(["", "", "", "", "", ""])
-          console.log(data);
         }
       }
     }
