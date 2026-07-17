@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 .background {
@@ -30,8 +31,7 @@
   --text: hsl(226 85% 93%);
   --text-muted: hsl(220 26% 69%); 
 }
-@import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 
 
 @font-face {

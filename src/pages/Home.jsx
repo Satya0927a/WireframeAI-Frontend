@@ -1,5 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { Link} from "react-router-dom";
 import { Star, ChevronDown, BarChart3, BookOpen, Users, Rocket } from "lucide-react";
 import Console from "./Console";
 import Demo from "./Viewdemo";
@@ -50,7 +49,7 @@ function App() {
                 {/* Buttons */}
                 <div className="mt-15 flex justify-center gap-10 relative z-10">
                     <button className="border border-black bg-black text-white rounded-2xl w-35 h-12 font-medium hover:text-orange-400 transition-colors transition hover:-translate-y-1 transition-all duration-400">
-                        <Link to="/console" className="w-full h-full flex items-center justify-center">
+                        <Link to="/login" className="w-full h-full flex items-center justify-center">
                             Get Started
                         </Link>
                     </button>

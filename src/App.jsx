@@ -17,11 +17,12 @@ import Precision from "./components/Features";
 import Blog from "./pages/Blog";
 import DashboardPage from './pages/Dashboard';
 import Support from "./pages/Support";
+import Protected from './components/Auth/Protected';
 
 function App() {
 
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
       <Routes>
 
@@ -47,7 +48,7 @@ function App() {
         <Route path="/console" element={<Console />} />
 
         {/* Dashboard  */}
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboard" element={<Protected><DashboardPage/></Protected>} />
 
         {/* Forgot Password */}
         <Route path="/forgot-password" element={<ForgotP />} />
@@ -73,7 +74,8 @@ function App() {
 
 
       </Routes>
-    </BrowserRouter>
+
+    </>
   );
 }
 export default App
