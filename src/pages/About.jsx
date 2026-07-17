@@ -12,7 +12,7 @@ const coreValues = [
     id: "integrity",
     title: "Build Faster",
     description:
-"Transform sketches and ideas into production-ready React components in minutes.",
+      "Transform sketches and ideas into production-ready React components in minutes.",
     imageUrl:
       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
   },
@@ -20,7 +20,7 @@ const coreValues = [
     id: "commitment",
     title: "AI Powered",
     description:
-"Leverage AI to automate repetitive development workflows.",
+      "Leverage AI to automate repetitive development workflows.",
     imageUrl:
       "https://images.unsplash.com/photo-1677442136019-21780ecad995",
   },
@@ -28,15 +28,15 @@ const coreValues = [
     id: "passion",
     title: "Developer First",
     description:
- "Built for developers who value speed and flexibility.",
-     imageUrl:
+      "Built for developers who value speed and flexibility.",
+    imageUrl:
       "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
   },
   {
     id: "seamlessness",
     title: "Production Ready",
     description:
-"Generate clean and scalable code ready for deployment.",
+      "Generate clean and scalable code ready for deployment.",
     imageUrl:
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
   },
@@ -76,7 +76,7 @@ const people = [
     className: "bottom-20 right-44 rotate-[2deg]",
   },
 ];
- function AboutUsPage() {
+function AboutUsPage() {
   const [expandedId, setExpandedId] = useState("integrity");
 
   return (
@@ -148,18 +148,18 @@ const people = [
       {/* LIFE AT WIREFRAMEAI */}
       <section className="w-full bg-amber-50 py-3 lg:py-26 px-4 sm:px-6">
         <div className="max-w-[1400px] mx-auto">
-          
+
           {/* Mobile + Tablet Layout */}
           <div className="xl:hidden">
             <div className="text-center mb-10 px-2">
               <h2 className="text-4xl font-bold text-gray-800">
                 What We <span className="text-blue-500">Believe.</span>
-               
+
               </h2>
               <p className="mt-4 text-gray-500">
-               Every day we're building tools that help founders,
-               developers and creators transform ideas into real
-              products faster than ever.
+                Every day we're building tools that help founders,
+                developers and creators transform ideas into real
+                products faster than ever.
               </p>
             </div>
 
@@ -191,12 +191,12 @@ const people = [
             <div className="w-[28%] max-w-sm shrink-0">
               <h2 className="text-[58px] leading-[1.08] font-light text-slate-800">
                 What We <span className="font-semibold text-blue-500">Believe.</span>
-                
+
               </h2>
               <p className="mt-10 text-gray-500 text-xl leading-relaxed">
-                 Every day we're building tools that help founders,
-               developers and creators transform ideas into real
-               products faster than ever.
+                Every day we're building tools that help founders,
+                developers and creators transform ideas into real
+                products faster than ever.
               </p>
             </div>
 
@@ -220,20 +220,18 @@ const people = [
                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/20 to-black/90" />
                     <div className="absolute inset-0 p-8 flex flex-col justify-end">
                       <h2
-                        className={`text-white font-light origin-left whitespace-nowrap transition-all duration-700 ${
-                          isExpanded
-                            ? "text-5xl rotate-0 mb-5 translate-y-0"
-                            : "text-4xl -rotate-90 -translate-x-2 -translate-y-10"
-                        }`}
+                        className={`text-white font-light origin-bottom-left whitespace-nowrap transition-all duration-700 ${isExpanded
+                            ? "text-5xl rotate-0 mb-5 translate-y-0 translate-x-0"
+                            : "text-4xl -rotate-90 absolute bottom-8 left-11 translate-x-0"
+                          }`}
                       >
                         {value.title}
                       </h2>
                       <div
-                        className={`overflow-hidden transition-all duration-700 delay-150 ${
-                          isExpanded
-                            ? "opacity-100 translate-x-0 max-h-[300px]"
-                            : "opacity-0 translate-x-20 max-h-0"
-                        }`}
+                        className={`transition-all duration-500 delay-150 ${isExpanded
+                          ? "opacity-100 translate-x-0 pointer-events-auto"
+                          : "opacity-0 translate-x-10 pointer-events-none"
+                          }`}
                       >
                         <p className="max-w-lg text-lg leading-relaxed text-white/90">
                           {value.description}
@@ -252,8 +250,8 @@ const people = [
       {/* WHY WE BUILD SECTION */}
       <section className="bg-[#f5f5f5] py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto relative min-h-[320px]">
-          
-         
+
+
           {/* Center Text Box */}
           <div className="flex flex-col items-center justify-center text-center h-[320px]">
             <h2 className="text-4xl md:text-6xl font-light text-slate-500">Why We</h2>
@@ -267,94 +265,94 @@ const people = [
       </section>
 
       <div className="max-w-7xl mx-auto space-y-12 mt-20">
-  <div>
-    {/* <span className="flex justify-center"> 
+        <div>
+          {/* <span className="flex justify-center"> 
       <img src={Founder}
        alt="Founder" 
        className="w-70 h-70 -mt-15 " 
        />
     </span> */}
-    <h1 className="text-black font-bold text-[40px] mt-12 flex justify-center items-center">Meet the Founders</h1>
+          <h1 className="text-black font-bold text-[40px] mt-12 flex justify-center items-center">Meet the Founders</h1>
 
-  </div>
-  {/* Founder 1 */}
-  <div className="bg-white rounded-[32px] overflow-hidden border border-slate-200 shadow-sm">
+        </div>
+        {/* Founder 1 */}
+        <div className="bg-white rounded-[32px] overflow-hidden border border-slate-200 shadow-sm">
 
-    <div className="grid md:grid-cols-[450px_1fr]">
+          <div className="grid md:grid-cols-[450px_1fr]">
 
-      {/* Left Image */}
-      <div className="h-[400px]">
-        <img
-          src={Satya}
-          alt="Satya"
-          className="w-full h-full object-cover"
-        />
+            {/* Left Image */}
+            <div className="h-[400px]">
+              <img
+                src={Satya}
+                alt="Satya"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Right Content */}
+            <div className="p-12 flex flex-col justify-center">
+
+              <h2 className="text-2xl md:text-[1.75rem] font-medium text-[#2D3748] tracking-tight mt-2">
+                <span className="font-bold text-[#1A202C]">Satyabrata Padhiary,</span>
+                <span className="font-normal ml-2 text-gray-600 text-[20px]"> (CEO & Founder)</span>
+              </h2>
+
+              <p className="mt-8 text-xl leading-relaxed text-slate-600">
+                Satya leads WireframeAI's product vision and strategy.
+                With a background in product design and AI systems,
+                he focuses on solving one question:
+                why does it take so long to turn an idea into a
+                working product?
+              </p>
+
+              <blockquote className="mt-10 border-l-4 border-blue-500 pl-5 italic text-xl text-slate-700">
+                "Every great product starts with a sketch.
+                We're making sure that sketch becomes code in seconds."
+              </blockquote>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Founder 2 */}
+        <div className="bg-white rounded-[32px] overflow-hidden border border-slate-200 shadow-sm mb-30">
+
+          <div className="grid md:grid-cols-[450px_1fr]">
+
+            <div className="h-[400px]">
+              <img
+                src={Devesh}
+                alt="Devesh"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="p-12 flex flex-col justify-center">
+
+              <h2 className="text-2xl md:text-[1.75rem] font-medium text-[#2D3748] tracking-tight mt-2">
+                <span className="font-bold text-[#1A202C]">Devesh Singh,</span>
+                <span className="font-normal ml-2 text-gray-600 text-[20px]"> (CEO & Founder)</span>
+              </h2>
+
+              <p className="mt-8 text-xl leading-relaxed text-slate-600">
+                Devesh is the technical architect behind WireframeAI.
+                He built the systems that transform wireframes
+                into clean production-ready React code.
+              </p>
+
+              <blockquote className="mt-10 border-l-4 border-blue-500 pl-5 italic text-xl text-slate-700">
+                "The best developer tool is the one that disappears.
+                You describe what you want and it simply works."
+              </blockquote>
+
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Right Content */}
-      <div className="p-12 flex flex-col justify-center">
-
-       <h2 className="text-2xl md:text-[1.75rem] font-medium text-[#2D3748] tracking-tight mt-2">
-          <span className="font-bold text-[#1A202C]">Satyabrata Padhiary,</span>
-          <span className="font-normal ml-2 text-gray-600 text-[20px]"> (CEO & Founder)</span>
-        </h2>
-
-        <p className="mt-8 text-xl leading-relaxed text-slate-600">
-          Satya leads WireframeAI's product vision and strategy.
-          With a background in product design and AI systems,
-          he focuses on solving one question:
-          why does it take so long to turn an idea into a
-          working product?
-        </p>
-
-        <blockquote className="mt-10 border-l-4 border-blue-500 pl-5 italic text-xl text-slate-700">
-          "Every great product starts with a sketch.
-          We're making sure that sketch becomes code in seconds."
-        </blockquote>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  {/* Founder 2 */}
-  <div className="bg-white rounded-[32px] overflow-hidden border border-slate-200 shadow-sm mb-30">
-
-    <div className="grid md:grid-cols-[450px_1fr]">
-
-      <div className="h-[400px]">
-        <img
-          src={Devesh}
-          alt="Devesh"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      <div className="p-12 flex flex-col justify-center">
-
-        <h2 className="text-2xl md:text-[1.75rem] font-medium text-[#2D3748] tracking-tight mt-2">
-          <span className="font-bold text-[#1A202C]">Devesh Singh,</span>
-          <span className="font-normal ml-2 text-gray-600 text-[20px]"> (CEO & Founder)</span>
-        </h2>
-
-        <p className="mt-8 text-xl leading-relaxed text-slate-600">
-          Devesh is the technical architect behind WireframeAI.
-          He built the systems that transform wireframes
-          into clean production-ready React code.
-        </p>
-
-        <blockquote className="mt-10 border-l-4 border-blue-500 pl-5 italic text-xl text-slate-700">
-          "The best developer tool is the one that disappears.
-          You describe what you want and it simply works."
-        </blockquote>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<Footer />
+      <Footer />
     </>
   );
 }
