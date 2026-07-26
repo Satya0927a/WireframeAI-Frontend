@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom"
 import Back from "../../assets/back.png";
 import { OtpVerifyReq } from "../../services/backend/auth";
 import useAuth from "../../context/Hooks/AuthHook";
+import { useToast } from "../Toast";
 
-const OtpVerify = ({ email, endpoint, redirect }) => {
-
+const OtpVerify = ({ email, endpoint, redirect ,remember}) => {
   const navigate = useNavigate()
   const [otp, setotp] = useState(["", "", "", "", "", ""])
   const inputRefs = useRef([])
   const { setuser } = useAuth()
+  const {showToast} = useToast()
 
   function handleChange(index, value) {
     if (value.length > 1) return
@@ -42,8 +43,9 @@ const OtpVerify = ({ email, endpoint, redirect }) => {
 
   async function HandleVerify() {
     try {
-      const data = await OtpVerifyReq(email, otp.join(""), endpoint)
+      const data = await OtpVerifyReq(email, otp.join("") ,remember, endpoint )
       if (data.success) {
+        showToast(data.message, "success", "top-right")
         setuser(data.data)
         navigate(redirect)
       }
@@ -52,9 +54,11 @@ const OtpVerify = ({ email, endpoint, redirect }) => {
       if (data) {
         const action = data.action
         if (action == "REDIRECTBACK") {
+          showToast(data.message, "error", "top-right")
           navigate("/login")
         }
         else if (action == "ERROR") {
+          showToast(data.message, "error", "top-right")
           setotp(["", "", "", "", "", ""])
         }
       }

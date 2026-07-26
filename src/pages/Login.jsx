@@ -3,16 +3,19 @@ import { motion } from "motion/react";
 import Back from "../assets/back.png";
 import Google from "../assets/google.png";
 import useAuth from "../context/Hooks/AuthHook";
-import { useState} from "react";
+import { useState } from "react";
 import { LoginReq } from "../services/backend/auth";
 import { useSearchParams } from "react-router-dom";
 import OtpVerify from "../components/Auth/OtpVerify";
+import { useToast } from "../components/Toast";
+import { Eye, EyeOff } from "lucide-react";
 
 function Login() {
   const [searchParams] = useSearchParams()
   const step = searchParams.get("step")
+  const remember = searchParams.get("remember")
   const email = searchParams.get("email")
-  const { user} = useAuth()
+  const { user } = useAuth()
 
   if (user) {
     return (
@@ -21,27 +24,38 @@ function Login() {
   } else {
     return (
       <>
-        {step == "otp" ? <OtpVerify endpoint={"/auth/login/verify"} email={email} redirect={"/dashboard"}/> : <LoginComponent />}
+        {step == "otp" ? <OtpVerify endpoint={"/auth/login/verify"} email={email} remember={remember == ""} redirect={"/dashboard"} /> : <LoginComponent />}
       </>
     );
   }
 }
 
 const LoginComponent = () => {
+  const { showToast } = useToast()
   const navigate = useNavigate()
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
-  
+  const [showPassword, setshowPassword] = useState(false)
+  const [rememberMe,setrememberMe] = useState(false)
 
-  async function HandleLogin() {
+
+  async function HandleLogin(e) {
+    e.preventDefault()
     try {
       const data = await LoginReq(email, password)
-      console.log(data);
       if (data.success) {
-        navigate(`/login?step=otp&email=${email}`) //!using email is temporary solution need to use token based verification
+        showToast(data.message, "success", "top-right")
+        rememberMe ?  navigate(`/login?step=otp&email=${email}&remember`) : navigate(`/login?step=otp&email=${email}`)
+        // navigate(`/login?step=otp&email=${email}`) //!using email is temporary solution need to use token based verification
       }
     } catch (error) {
-      console.log(error.response.data);
+      const errorMsg = error.response?.data.message
+      if (errorMsg) {
+        showToast(errorMsg, "error", "top-right")
+      }
+      else {
+        showToast("Some Error Occured", "error", "top-right")
+      }
     }
   }
   return (
@@ -70,52 +84,67 @@ const LoginComponent = () => {
         </div>
 
         {/* Inputs */}
-        <div className="mt-8 space-y-5">
-          <input
-            type="email"
-            placeholder="Email address"
-            value={email}
-            onChange={(e) => { setemail(e.target.value) }}
-            className="w-full h-16 px-6 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
-          />
+        <form  onSubmit={HandleLogin}>
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => { setpassword(e.target.value) }}
-            className="w-full py-5 px-8 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
-          />
-        </div>
-
-        {/* Remember + Forgot */}
-        <div className="flex justify-between items-center mt-4 text-gray-600 text-sm">
-          <label className="flex items-center gap-2 cursor-pointer">
+          <div className="mt-8 space-y-5">
             <input
-              type="checkbox"
-              className="accent-orange-500"
+              type="email"
+              placeholder="Email address"
+              value={email}
+              onChange={(e) => { setemail(e.target.value) }}
+              required
+              className="w-full h-16 px-6 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
             />
-            Remember me
-          </label>
 
-          <Link
-            to="/forgot-password"
-            className="text-orange-500 hover:underline"
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => { setpassword(e.target.value) }}
+                required
+                className="w-full py-5 px-8 pr-14 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
+              />
+              <button
+                type="button"
+                onClick={() => setshowPassword(!showPassword)}
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer"
+              >
+                {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
+              </button>
+            </div>
+          </div>
+
+          {/* Remember + Forgot */}
+          <div className="flex justify-between items-center mt-4 text-gray-600 text-sm">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                onChange={()=>{setrememberMe(!rememberMe);
+                }}
+                className="accent-orange-500"
+              />
+              Remember me
+            </label>
+
+            <Link
+              to="/forgot-password"
+              className="text-orange-500 hover:underline"
+            >
+              Forgot Password?
+            </Link>
+          </div>
+
+          {/* Login Button */}
+          <motion.button
+            whileHover={{ scale: 1.025 }}
+            whileTap={{ scale: 0.975 }}
+            type="submit"
+            className="w-full h-16 bg-[#FF9B51] rounded-full mt-6 text-black text-2xl font-bold font-serif  cursor-pointer"
           >
-            Forgot Password?
-          </Link>
-        </div>
-
-        {/* Login Button */}
-        <motion.button
-          whileHover={{ scale: 1.025 }}
-          whileTap={{ scale: 0.975 }}
-          type="button"
-          className="w-full h-16 bg-[#FF9B51] rounded-full mt-6 text-black text-2xl font-bold font-serif  cursor-pointer"
-          onClick={HandleLogin}
-        >
-          Login
-        </motion.button>
+            Login
+          </motion.button>
+        </form>
 
         {/* Divider */}
         <div className="flex items-center gap-3 mt-6">

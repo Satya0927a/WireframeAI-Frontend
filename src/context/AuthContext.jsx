@@ -12,11 +12,9 @@ const AuthProvider = ({children})=>{
     async function fetchData() {
       try{
         const data = await FetchUserData()
-        console.log(data);
         setuser(data.data);
       }catch(error){
-        const data = error.response?.data
-        data?console.log(data) : null;
+        console.log(error);
       }
       finally {
         setloading(false)
