@@ -6,6 +6,8 @@ import useAuth from "../context/Hooks/AuthHook";
 import { SignupReq } from "../services/backend/auth";
 import { useState } from "react";
 import OtpVerify from "../components/Auth/OtpVerify";
+import { useToast } from "../components/Toast";
+import { Eye, EyeOff } from "lucide-react";
 
 function Signup() {
   const [searchparams] = useSearchParams()
@@ -18,27 +20,31 @@ function Signup() {
   } else {
     return (
       <>
-      {step == 'otp' ? 
-      <OtpVerify email={email} endpoint={"/auth/signup/verify"} redirect={"/dashboard"}/> : <SignupForm navigate={navigate}/> }
+        {step == 'otp' ?
+          <OtpVerify email={email} endpoint={"/auth/signup/verify"} redirect={"/dashboard"} /> : <SignupForm navigate={navigate} />}
       </>
     );
   }
 }
 
-const SignupForm = ({navigate}) => {
+const SignupForm = ({ navigate }) => {
   const [name, setname] = useState("")
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
+  const [showPassword, setshowPassword] = useState(false)
+  const { showToast } = useToast()
 
-  async function handleSignup() {
+  async function handleSignup(e) {
+    e.preventDefault()
     try {
       const data = await SignupReq(name, email, password)
       if (data.success) {
+        showToast(data.message, "success", "top-right")
         navigate(`/signup?step=otp&email=${email}`)
       }
     } catch (error) {
       const data = error.response?.data
-      data ? console.log(data) : null;
+      data ? showToast(data.message, "error", "top-right") : showToast("Some error occured", "error", "top-right");
     }
   }
 
@@ -77,12 +83,14 @@ const SignupForm = ({navigate}) => {
         </div>
 
         {/* Form */}
-        <div className="mt-8 space-y-5">
+        <form className="mt-8 space-y-5" onSubmit={handleSignup}>
           <input
             type="text"
             placeholder="Enter Name"
             value={name ? name : ""}
             onChange={e => setname(e.target.value)}
+            minLength={5}
+            required
             className="w-full py-5 px-8 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
           />
 
@@ -91,24 +99,34 @@ const SignupForm = ({navigate}) => {
             placeholder="Email address"
             value={email ? email : ""}
             onChange={e => setemail(e.target.value)}
+            required
             className="w-full py-5 px-8 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
           />
-
-          <input
-            type="password"
-            placeholder="Password"
-            value={password ? password : ""}
-            onChange={e => setpassword(e.target.value)}
-            className="w-full py-5 px-8 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password ? password : ""}
+              onChange={e => setpassword(e.target.value)}
+              required
+              className="w-full py-5 px-8 rounded-full bg-white border border-gray-300 text-gray-800 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-orange-400"
+            />
+            <button
+              type="button"
+              onClick={() => setshowPassword(!showPassword)}
+              className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer"
+            >
+              {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
+            </button>
+          </div>
 
           <button className="w-full py-4 mt-3 rounded-full bg-[#FF9B51] border-t-2 border-white 
           text-black text-2xl font-serif font-bold cursor-pointer"
-            onClick={handleSignup}
+            type="submit"
           >
             Continue
           </button>
-        </div>
+        </form>
 
         {/* Divider */}
         <div className="flex items-center gap-3 mt-6">
