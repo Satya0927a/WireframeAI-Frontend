@@ -1,0 +1,27 @@
+[
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "app",
+  "theme": "ribbon",
+  "shape": "app-screen",
+  "axes": "two-step rail beside a machined form panel",
+  "hero": "none, app screen: title and step rail left, form panel right",
+  "nav": "edge-aligned wordmark and Back control",
+  "footer": "none, the machined panel closes the screen",
+  "imagery": "existing Google mark only; back.png replaced by a Lucide arrow",
+  "photos": [],
+  "entry": "Login, Signup and their shared OTP step",
+  "fingerprint": "app|split-5-7|machined-panel|two-step-rail|quiet-ground",
+  "sections": [
+   "Auth shell",
+   "Credentials",
+   "Verify"
+  ],
+  "signature": "machined auth panel with a real two-step rail",
+  "waived": [],
+  "prompt": "redesign the login and sign up page using the ribbon theme",
+  "sweep": "sloplint clean: 0 FAIL, 0 REFLEX, 0 WARN; kept 10/10 handlers, 6/6 links, 4/4 fields",
+  "date": "2026-10-29"
+ }
+]

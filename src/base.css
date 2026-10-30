@@ -1,0 +1,36 @@
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+body { margin: 0; }
+html { scrollbar-color: var(--color-rule) var(--color-paper); }
+.auth-page {
+  min-height: 100svh;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  caret-color: var(--color-accent);
+}
+.auth-page ::selection { background: color-mix(in oklab, var(--color-accent) 22%, transparent); color: var(--color-ink); }
+.auth-page :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.auth-page a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.16em; }
+.auth-page h1, .auth-page h2, .auth-page h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--display-weight, 400);
+  font-synthesis: none;
+  letter-spacing: var(--tracking-display);
+  line-height: 1.05;
+  overflow-wrap: break-word;
+  min-width: 0;
+  text-wrap: balance;
+}
+.auth-page p { margin: 0; text-wrap: pretty; }
+.auth-page img { max-width: 100%; height: auto; display: block; }
+.auth-page svg { display: block; }
+.auth-page [hidden] { display: none !important; }
+.auth-page button, .auth-page input { font: inherit; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
