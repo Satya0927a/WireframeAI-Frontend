@@ -238,7 +238,7 @@ export default function Contact() {
             Visit Our Office
           </h2>
 
-          <div className="rounded-3xl overflow-hidden border h-[400px] bg-gray-100 flex items-center justify-center">
+          <div className="rounded-3xl overflow-hidden border h-100 bg-gray-100 flex items-center justify-center">
 
             <div className="text-center">
               <MapPin

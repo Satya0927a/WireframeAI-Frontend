@@ -1,5 +1,5 @@
 import Back from "../assets/back.png"
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa";
 
 function Forgot() {
@@ -30,22 +30,22 @@ function Forgot() {
                 >
                     Send Reset Code
                 </button>
-                
+
                 {/* Divider */}
-        <div className="flex items-center gap-3 mt-6">
-          <div className="flex-1 h-[1px] bg-gray-300"></div>
-          <span className="text-gray-500 text-sm">
-            Or
-          </span>
-          <div className="flex-1 h-[1px] bg-gray-300"></div>
-        </div>
+                <div className="flex items-center gap-3 mt-6">
+                    <div className="flex-1 h-px bg-gray-300"></div>
+                    <span className="text-gray-500 text-sm">
+                        Or
+                    </span>
+                    <div className="flex-1 h-px bg-gray-300"></div>
+                </div>
                 <div className="text-center mt-4">
-                    
+
                     <Link
                         to="/login"
                         className="inline-flex items-center hover:underline"
                     >
-                         <FaAngleLeft />
+                        <FaAngleLeft />
                         Back to login
                     </Link>
 

@@ -4,13 +4,15 @@ import { OtpVerifyReq } from "../../services/backend/auth";
 import useAuth from "../../context/Hooks/AuthHook";
 import { useToast } from "../Toast";
 import AuthShell from "./AuthShell";
+import { AxiosError } from "axios";
+import { errorRedirectHandler } from "../../utils/errors/errorRedirect.config";
 
-const OtpVerify = ({ email, endpoint, redirect ,remember}) => {
+const OtpVerify = ({ redirect, challenge }) => {
   const navigate = useNavigate()
   const [otp, setotp] = useState(["", "", "", "", "", ""])
   const inputRefs = useRef([])
   const { setuser } = useAuth()
-  const {showToast} = useToast()
+  const { showToast } = useToast()
 
   function handleChange(index, value) {
     if (value.length > 1) return
@@ -42,24 +44,21 @@ const OtpVerify = ({ email, endpoint, redirect ,remember}) => {
 
   async function HandleVerify() {
     try {
-      const data = await OtpVerifyReq(email, otp.join("") ,remember, endpoint )
-      if (data.success) {
-        showToast(data.message, "success", "top-right")
-        setuser(data.data)
-        navigate(redirect)
-      }
+      const data = await OtpVerifyReq(otp.join(""), challenge.current)
+      showToast(data.message, "success", "top-right")
+      setuser(data.data)
+      navigate(redirect)
     } catch (error) {
-      const data = error.response?.data
-      if (data) {
-        const action = data.action
-        if (action == "REDIRECTBACK") {
-          showToast(data.message, "error", "top-right")
-          navigate("/login")
+      if (error instanceof AxiosError) {
+        const data = error.response.data
+        showToast(data.message, "error", "top-right")
+        console.log(data);
+        if (data.redirectTo) {
+          navigate(errorRedirectHandler(data.redirectTo));
         }
-        else if (action == "ERROR") {
-          showToast(data.message, "error", "top-right")
-          setotp(["", "", "", "", "", ""])
-        }
+      }
+      else {
+        console.error(error);
       }
     }
   }

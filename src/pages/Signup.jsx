@@ -8,26 +8,27 @@ import OtpVerify from "../components/Auth/OtpVerify";
 import { useToast } from "../components/Toast";
 import { Eye, EyeOff } from "lucide-react";
 import AuthShell from "../components/Auth/AuthShell";
+import { AxiosError } from "axios";
+import { errorRedirectHandler } from "../utils/errors/errorRedirect.config";
 
 function Signup() {
   const [searchparams] = useSearchParams()
   const step = searchparams.get('step')
-  const email = searchparams.get('email')
   const navigate = useNavigate();
-  const { user } = useAuth()
+  const { user, challenge } = useAuth()
   if (user) {
     return <Navigate to={"/dashboard"} />
   } else {
     return (
       <>
-        {step == 'otp' ?
-          <OtpVerify email={email} endpoint={"/auth/signup/verify"} redirect={"/dashboard"} /> : <SignupForm navigate={navigate} />}
+        {step == 'otp' && challenge.current ?
+          <OtpVerify redirect={"/dashboard"} challenge={challenge} /> : <SignupForm navigate={navigate} challenge={challenge} />}
       </>
     );
   }
 }
 
-const SignupForm = ({ navigate }) => {
+const SignupForm = ({ navigate, challenge }) => {
   const [name, setname] = useState("")
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
@@ -37,14 +38,23 @@ const SignupForm = ({ navigate }) => {
   async function handleSignup(e) {
     e.preventDefault()
     try {
-      const data = await SignupReq(name, email, password)
-      if (data.success) {
-        showToast(data.message, "success", "top-right")
-        navigate(`/signup?step=otp&email=${email}`)
-      }
+      const data = await SignupReq(name, email, password);
+      //eslint-disable-next-line
+      challenge.current = data.challenge;
+      showToast(data.message, "success", "top-right");
+      navigate(`/signup?step=otp`);
     } catch (error) {
-      const data = error.response?.data
-      data ? showToast(data.message, "error", "top-right") : showToast("Some error occured", "error", "top-right");
+      if (error instanceof AxiosError) {
+        const data = error.response.data
+        showToast(data.message, "error", "top-right")
+        if (data.redirectTo) {
+          navigate(errorRedirectHandler(data.redirectTo));
+        }
+      }
+      else {
+        showToast("Some error occured", "error", "top-right")
+        console.error(error);
+      }
     }
   }
 

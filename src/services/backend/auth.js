@@ -4,16 +4,15 @@ const url = "http://localhost:3000"
 axios.defaults.withCredentials = true;
 
 async function FetchUserData() {
-  const response = await axios.get(`${url}/user`, {
-    withCredentials: true
-  })
-  return response.data
+  const response = await axios.get(`${url}/user`);
+  return response.data;
 }
 
-async function LoginReq(email, password) {
+async function LoginReq(email, password, remember) {
   const response = await axios.post(`${url}/auth/login`, {
     email: email,
-    password: password
+    password: password,
+    remember: remember
   })
   return response.data
 }
@@ -27,11 +26,10 @@ async function SignupReq(name, email, password) {
   return response.data
 }
 
-async function OtpVerifyReq(email, otp, remember, endpoint) {
-  const response = await axios.post(`${url}${endpoint}`, {
-    email: email,
+async function OtpVerifyReq(otp, challenge) {
+  const response = await axios.post(`${url}/auth/verify/otpchallenge`, {
     otp: otp,
-    remember: remember,
+    challenge: challenge
   })
   return response.data
 }
