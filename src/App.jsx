@@ -9,6 +9,7 @@ import Termofuse from "./pages/Termofuse";
 import Privacy from "./pages/Privacy"
 import Console from './pages/Console';
 import ForgotP from "./pages/ForgotP";
+import ResetPassword from "./pages/ResetPassword";
 import Pricing from "./components/Pricing";
 import Tryit from "./components/Tryit";
 import Test from "./pages/Testhome";
@@ -52,6 +53,9 @@ function App() {
 
         {/* Forgot Password */}
         <Route path="/forgot-password" element={<ForgotP />} />
+
+        {/* Reset Password */}
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Pricing */}
         <Route path="/pricing" element={<Pricing />} />

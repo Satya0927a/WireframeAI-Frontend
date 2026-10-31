@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import useAuth from "../context/Hooks/AuthHook";
 import { SignupReq } from "../services/backend/auth";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import OtpVerify from "../components/Auth/OtpVerify";
 import { useToast } from "../components/Toast";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 import AuthShell from "../components/Auth/AuthShell";
 import { AxiosError } from "axios";
 import { errorRedirectHandler } from "../utils/errors/errorRedirect.config";
@@ -33,21 +33,25 @@ const SignupForm = ({ navigate, challenge }) => {
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
   const [showPassword, setshowPassword] = useState(false)
+  const [loading, setloading] = useState(false)
+  const submitting = useRef(false)
   const { showToast } = useToast()
 
   async function handleSignup(e) {
     e.preventDefault()
+    if (submitting.current) return
+    submitting.current = true
+    setloading(true)
     try {
       const data = await SignupReq(name, email, password);
-      //eslint-disable-next-line
       challenge.current = data.challenge;
       showToast(data.message, "success", "top-right");
       navigate(`/signup?step=otp`);
     } catch (error) {
       if (error instanceof AxiosError) {
-        const data = error.response.data
-        showToast(data.message, "error", "top-right")
-        if (data.redirectTo) {
+        const data = error.response?.data
+        showToast(data?.message || "Some error occured", "error", "top-right")
+        if (data?.redirectTo) {
           navigate(errorRedirectHandler(data.redirectTo));
         }
       }
@@ -55,6 +59,9 @@ const SignupForm = ({ navigate, challenge }) => {
         showToast("Some error occured", "error", "top-right")
         console.error(error);
       }
+    } finally {
+      submitting.current = false
+      setloading(false)
     }
   }
 
@@ -123,8 +130,13 @@ const SignupForm = ({ navigate, challenge }) => {
           </div>
         </div>
 
-        <button className="auth-primary" type="submit">
-          Continue
+        <button className="auth-primary" type="submit" disabled={loading} aria-busy={loading}>
+          {loading ? (
+            <>
+              <LoaderCircle className="auth-spinner" size={16} aria-hidden="true" />
+              Creating account…
+            </>
+          ) : "Continue"}
         </button>
 
         <p className="auth-or">or sign up with</p>

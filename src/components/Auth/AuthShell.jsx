@@ -24,7 +24,7 @@ function StepRail({ step }) {
   );
 }
 
-function AuthShell({ title, note, step = 1, onClick, panelLabel, children }) {
+function AuthShell({ title, note, step = 1, showSteps = true, onClick, panelLabel, children }) {
   return (
     <div className="auth-page">
       <a className="auth-skip" href="#auth-main">Skip to content</a>
@@ -47,7 +47,7 @@ function AuthShell({ title, note, step = 1, onClick, panelLabel, children }) {
         <section className="auth-intro" aria-labelledby="auth-title">
           <h1 className="auth-title" id="auth-title">{title}</h1>
           {note ? <p className="auth-note">{note}</p> : null}
-          <StepRail step={step} />
+          {showSteps ? <StepRail step={step} /> : null}
         </section>
 
         <section className="auth-panel" aria-label={panelLabel}>

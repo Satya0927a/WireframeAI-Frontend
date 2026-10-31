@@ -1,18 +1,31 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { OtpVerifyReq } from "../../services/backend/auth";
+import { OtpVerifyReq, ResendOtpReq } from "../../services/backend/auth";
 import useAuth from "../../context/Hooks/AuthHook";
 import { useToast } from "../Toast";
 import AuthShell from "./AuthShell";
 import { AxiosError } from "axios";
 import { errorRedirectHandler } from "../../utils/errors/errorRedirect.config";
+import { LoaderCircle } from "lucide-react";
 
 const OtpVerify = ({ redirect, challenge }) => {
   const navigate = useNavigate()
   const [otp, setotp] = useState(["", "", "", "", "", ""])
+  const [verifying, setverifying] = useState(false)
+  const [resending, setresending] = useState(false)
+  const [resendIn, setresendIn] = useState(30)
+  const verifyingRef = useRef(false)
+  const resendingRef = useRef(false)
   const inputRefs = useRef([])
   const { setuser } = useAuth()
   const { showToast } = useToast()
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setresendIn((seconds) => (seconds > 0 ? seconds - 1 : 0))
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [])
 
   function handleChange(index, value) {
     if (value.length > 1) return
@@ -43,6 +56,9 @@ const OtpVerify = ({ redirect, challenge }) => {
   }
 
   async function HandleVerify() {
+    if (verifyingRef.current) return
+    verifyingRef.current = true
+    setverifying(true)
     try {
       const data = await OtpVerifyReq(otp.join(""), challenge.current)
       showToast(data.message, "success", "top-right")
@@ -50,16 +66,50 @@ const OtpVerify = ({ redirect, challenge }) => {
       navigate(redirect)
     } catch (error) {
       if (error instanceof AxiosError) {
-        const data = error.response.data
-        showToast(data.message, "error", "top-right")
-        console.log(data);
-        if (data.redirectTo) {
+        const data = error.response?.data
+        showToast(data?.message || "Could not verify the code. Try again.", "error", "top-right")
+        if (data?.redirectTo) {
           navigate(errorRedirectHandler(data.redirectTo));
         }
       }
       else {
         console.error(error);
       }
+    } finally {
+      verifyingRef.current = false
+      setverifying(false)
+    }
+  }
+
+  async function HandleResend() {
+    if (resendIn > 0 || resendingRef.current) return
+    if (!challenge?.current) {
+      showToast("Your code session expired. Please sign in again.", "error", "top-right")
+      return
+    }
+    resendingRef.current = true
+    setresending(true)
+    try {
+      await ResendOtpReq(challenge.current)
+      showToast("A new code has been sent to your email.", "success", "top-right")
+      setotp(["", "", "", "", "", ""])
+      setresendIn(30)
+      inputRefs.current[0]?.focus()
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const data = error.response?.data
+        showToast(data?.message || "Could not resend the code. Try again.", "error", "top-right")
+        if (data?.redirectTo) {
+          navigate(errorRedirectHandler(data.redirectTo));
+        }
+      }
+      else {
+        showToast("Could not resend the code. Try again.", "error", "top-right")
+        console.error(error);
+      }
+    } finally {
+      resendingRef.current = false
+      setresending(false)
     }
   }
 
@@ -90,12 +140,35 @@ const OtpVerify = ({ redirect, challenge }) => {
 
       <button
         type="button"
-        disabled={otp.join("").length !== 6}
+        disabled={otp.join("").length !== 6 || verifying}
+        aria-busy={verifying}
         className="auth-primary auth-verify"
         onClick={HandleVerify}
       >
-        Verify
+        {verifying ? (
+          <>
+            <LoaderCircle className="auth-spinner" size={16} aria-hidden="true" />
+            Verifying…
+          </>
+        ) : "Verify"}
       </button>
+
+      <div className="auth-resend-row">
+        <span>Didn’t get the code?</span>
+        <button
+          type="button"
+          className="auth-resend"
+          disabled={resendIn > 0 || resending}
+          onClick={HandleResend}
+        >
+          {resending ? (
+            <>
+              <LoaderCircle className="auth-spinner" size={14} aria-hidden="true" />
+              Sending…
+            </>
+          ) : resendIn > 0 ? `Resend in ${resendIn}s` : "Resend code"}
+        </button>
+      </div>
     </AuthShell>
   )
 }

@@ -4,6 +4,6 @@ export const errorRedirectHandler = (redirectTo) => {
       return "/login"
 
     default:
-      break;
+      return "/"
   }
 }

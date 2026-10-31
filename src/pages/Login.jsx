@@ -1,11 +1,11 @@
 import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import Google from "../assets/google.png";
 import useAuth from "../context/Hooks/AuthHook";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { LoginReq } from "../services/backend/auth";
 import OtpVerify from "../components/Auth/OtpVerify";
 import { useToast } from "../components/Toast";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 import AuthShell from "../components/Auth/AuthShell";
 import { AxiosError } from "axios";
 import { errorRedirectHandler } from "../utils/errors/errorRedirect.config";
@@ -35,27 +35,34 @@ const LoginComponent = ({ challenge }) => {
   const [password, setpassword] = useState("")
   const [showPassword, setshowPassword] = useState(false)
   const [rememberMe, setrememberMe] = useState(false)
+  const [loading, setloading] = useState(false)
+  const submitting = useRef(false)
 
 
   async function HandleLogin(e) {
     e.preventDefault()
+    if (submitting.current) return
+    submitting.current = true
+    setloading(true)
     try {
       const data = await LoginReq(email, password, rememberMe)
-      //eslint-disable-next-line
       challenge.current = data.challenge
       showToast(data.message, "success", "top-right")
       navigate(`/login?step=otp`)
     } catch (error) {
       if (error instanceof AxiosError) {
-        const data = error.response.data
-        showToast(data.message, "error", "top-right")
-        if (data.redirectTo) {
+        const data = error.response?.data
+        showToast(data?.message || "Some Error Occured", "error", "top-right")
+        if (data?.redirectTo) {
           navigate(errorRedirectHandler(data.redirectTo));
         }
       }
       else {
         showToast("Some Error Occured", "error", "top-right")
       }
+    } finally {
+      submitting.current = false
+      setloading(false)
     }
   }
   return (
@@ -125,8 +132,13 @@ const LoginComponent = ({ challenge }) => {
           </Link>
         </div>
 
-        <button type="submit" className="auth-primary">
-          Login
+        <button type="submit" className="auth-primary" disabled={loading} aria-busy={loading}>
+          {loading ? (
+            <>
+              <LoaderCircle className="auth-spinner" size={16} aria-hidden="true" />
+              Logging in…
+            </>
+          ) : "Login"}
         </button>
 
         <p className="auth-or">or login with</p>

@@ -34,8 +34,30 @@ async function OtpVerifyReq(otp, challenge) {
   return response.data
 }
 
+async function ResendOtpReq(challenge) {
+  const response = await axios.post(`${url}/auth/otp/resend-request`, {
+    challenge: challenge
+  })
+  return response.data
+}
+
+async function ForgotPasswordReq(email) {
+  const response = await axios.post(`${url}/auth/forgot-password`, {
+    email: email
+  })
+  return response.data
+}
+
+async function ResetPasswordReq(newPassword, session) {
+  const response = await axios.post(`${url}/auth/password-reset`, {
+    newPassword: newPassword,
+    session: session
+  })
+  return response.data
+}
+
 async function LogOutReq() {
   const response = await axios.post(`${url}/auth/logout`)
   return response.data
 }
-export { FetchUserData, LoginReq, SignupReq, OtpVerifyReq, LogOutReq }
+export { FetchUserData, ResetPasswordReq, LoginReq, SignupReq, OtpVerifyReq, ResendOtpReq, ForgotPasswordReq, LogOutReq }
